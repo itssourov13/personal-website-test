@@ -1,0 +1,32 @@
+---
+title: "A standalone prefers-reduced-motion toggle widget"
+type: "experiment"
+status: "exploring"
+summary: "A small embeddable widget that lets a site visitor override prefers-reduced-motion, not just detect it."
+tags: ["accessibility", "engineering"]
+started: "2026-05-01"
+published: "2026-05-01"
+draft: false
+demo: true
+---
+
+## What it is
+
+Most sites only *read* `prefers-reduced-motion` from the OS. This is a
+small widget testing the other direction — a visible, persistent toggle
+that lets someone override the system setting per-site, for the case
+where their OS-level preference doesn't match what they want on this
+one page.
+
+## Why I built it
+
+A few people mentioned wanting motion on a device where they'd set
+reduced-motion system-wide for unrelated reasons (battery, a shared
+family device). Curious whether a per-site override control makes sense
+as a pattern or is just extra UI nobody uses.
+
+## Status / what's next
+
+Early — a working prototype, not yet tested with real users. This entry
+is sample content standing in for this section while it's still mostly
+empty; treat the specifics as illustrative, not a finished writeup.
