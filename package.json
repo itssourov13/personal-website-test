@@ -34,7 +34,7 @@
     "@hookform/resolvers": "^3.9.1",
     "resend": "^3.5.0",
     "gray-matter": "^4.0.3",
-    "marked": "^15.0.4",
+    "marked": "^18.0.13",
     "server-only": "^0.0.1"
   },
   "devDependencies": {
