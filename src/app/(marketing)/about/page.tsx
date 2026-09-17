@@ -50,7 +50,7 @@ export default function AboutPage() {
             When I&apos;m not working, I&apos;m usually reading about
             typography, tinkering with the site you&apos;re on right now, or
             trying to get better at the things I write about on the{" "}
-            <a href="/writing">writing page</a>. See what I&apos;m focused on
+            <Link href="/writing">writing page</Link>. See what I&apos;m focused on
             right now on the <a href="/now">/now page</a>.
           </p>
         </div>

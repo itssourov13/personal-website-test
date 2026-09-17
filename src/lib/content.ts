@@ -321,7 +321,10 @@ export function extractHeadings(markdown: string): Heading[] {
 }
 
 const headingRenderer = {
-  heading({ tokens, depth }: { tokens: unknown; depth: number }) {
+  heading(
+    this: { parser: { parseInline(tokens: unknown): string } },
+    { tokens, depth }: { tokens: unknown; depth: number },
+  ): string {
     // Cast needed: marked's Token type isn't imported to avoid a hard
     // dependency on its (unstable across versions) internal token shape.
     const text = this.parser.parseInline(tokens as never);
@@ -335,3 +338,5 @@ marked.use({ renderer: headingRenderer });
 export async function renderMarkdown(body: string): Promise<string> {
   return marked.parse(body, { async: true });
 }
+
+

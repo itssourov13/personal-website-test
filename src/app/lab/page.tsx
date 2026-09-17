@@ -32,7 +32,7 @@ export default function LabPage() {
         <Section className="pt-0 pb-0">
           <p className="text-muted border-accent-soft bg-accent-soft/40 rounded-md border px-4 py-3 text-sm">
             This section is still mostly empty — the entry below is sample
-            content standing in for a real one while it's built out.
+            content standing in for a real one while it&apos;s built out.
           </p>
         </Section>
       ) : null}

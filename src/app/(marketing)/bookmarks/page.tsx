@@ -30,7 +30,7 @@ export default function BookmarksPage() {
         <Section className="pt-0 pb-0">
           <p className="text-muted border-accent-soft bg-accent-soft/40 rounded-md border px-4 py-3 text-sm">
             This library is still mostly empty — the entries below are
-            sample bookmarks standing in for real curation while it's built
+            sample bookmarks standing in for real curation while it&apos;s built
             out.
           </p>
         </Section>
