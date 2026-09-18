@@ -34,11 +34,11 @@ export default function ReadingProgress({
   }, [targetId]);
 
   return (
-    <div className="bg-border sticky top-16 z-30 h-0.5 w-full" aria-hidden="true">
-      <div
-        className="bg-accent h-full"
-        style={{ width: `${progress}%` }}
-      />
+    <div
+      className="bg-border sticky top-16 z-30 h-0.5 w-full"
+      aria-hidden="true"
+    >
+      <div className="bg-accent h-full" style={{ width: `${progress}%` }} />
     </div>
   );
 }

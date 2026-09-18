@@ -13,7 +13,13 @@ import Header from "@/components/layout/Header";
 import RouteFocus from "@/components/layout/RouteFocus";
 import SkipLink from "@/components/layout/SkipLink";
 import LenisProvider from "@/components/motion/LenisProvider";
-import { getAllIdeas, getAllLab, getAllNotes, getAllWork, getTopics } from "@/lib/content";
+import {
+  getAllIdeas,
+  getAllLab,
+  getAllNotes,
+  getAllWork,
+  getTopics,
+} from "@/lib/content";
 import { jsonLdScript, personJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site.config";
 
@@ -61,13 +67,32 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const nonce = (await headers()).get("x-nonce") ?? undefined;
-  const paletteWork = getAllWork().map((item) => ({ title: item.title, slug: item.slug }));
-  const paletteNotes = getAllNotes().map((item) => ({ title: item.title, slug: item.slug }));
-  const paletteLab = getAllLab().map((item) => ({ title: item.title, slug: item.slug }));
-  const paletteIdeas = getAllIdeas().map((item) => ({ title: item.title, slug: item.slug }));
-  const paletteTopics = getTopics().map((topic) => ({ label: topic.label, slug: topic.slug }));
+  const paletteWork = getAllWork().map((item) => ({
+    title: item.title,
+    slug: item.slug,
+  }));
+  const paletteNotes = getAllNotes().map((item) => ({
+    title: item.title,
+    slug: item.slug,
+  }));
+  const paletteLab = getAllLab().map((item) => ({
+    title: item.title,
+    slug: item.slug,
+  }));
+  const paletteIdeas = getAllIdeas().map((item) => ({
+    title: item.title,
+    slug: item.slug,
+  }));
+  const paletteTopics = getTopics().map((topic) => ({
+    label: topic.label,
+    slug: topic.slug,
+  }));
 
   return (
     <html

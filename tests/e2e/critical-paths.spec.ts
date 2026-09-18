@@ -10,7 +10,9 @@ test("home page loads and nav works", async ({ page }) => {
 
 test("theme toggle switches to dark mode", async ({ page }) => {
   await page.goto("/");
-  const toggle = page.getByRole("button", { name: /switch to (dark|light) theme/i });
+  const toggle = page.getByRole("button", {
+    name: /switch to (dark|light) theme/i,
+  });
   await toggle.click();
   await expect(page.locator("html")).toHaveClass(/dark|light/);
 });
@@ -21,7 +23,9 @@ test("404 page renders for an unknown route", async ({ page }) => {
   await expect(page.getByText(/wandered off/i)).toBeVisible();
 });
 
-test("contact form shows validation errors on empty submit", async ({ page }) => {
+test("contact form shows validation errors on empty submit", async ({
+  page,
+}) => {
   await page.goto("/contact");
   await page.getByRole("button", { name: /send message/i }).click();
   await expect(page.getByRole("alert").first()).toBeVisible();
@@ -39,12 +43,16 @@ test("no horizontal scroll at narrow viewport", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto("/");
   const hasHScroll = await page.evaluate(
-    () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    () =>
+      document.documentElement.scrollWidth >
+      document.documentElement.clientWidth,
   );
   expect(hasHScroll).toBe(false);
 });
 
-test("respects prefers-reduced-motion (no marquee animation)", async ({ page }) => {
+test("respects prefers-reduced-motion (no marquee animation)", async ({
+  page,
+}) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.locator(".animate-marquee")).toHaveCount(0);
@@ -61,28 +69,36 @@ test("mobile nav traps focus and Escape closes it", async ({ page }) => {
   await expect(trigger).toBeFocused();
 });
 
-test("desktop More menu opens, reaches a secondary page, and Escape closes it", async ({ page }) => {
+test("desktop More menu opens, reaches a secondary page, and Escape closes it", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/");
   const trigger = page.getByRole("button", { name: "More" });
   await trigger.click();
   const menu = page.getByRole("menu", { name: "More" });
   await expect(menu).toBeVisible();
-  await expect(menu.getByRole("menuitem", { name: "Photography" })).toBeVisible();
+  await expect(
+    menu.getByRole("menuitem", { name: "Photography" }),
+  ).toBeVisible();
 
   await page.keyboard.press("Escape");
   await expect(menu).toBeHidden();
   await expect(trigger).toBeFocused();
 });
 
-test("Photography, Life, and Ideas pages load with an honest empty state", async ({ page }) => {
+test("Photography, Life, and Ideas pages load with an honest empty state", async ({
+  page,
+}) => {
   for (const route of ["/photography", "/life", "/ideas"]) {
     await page.goto(route);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   }
 });
 
-test("command palette opens with Ctrl+K and navigates on Enter", async ({ page }) => {
+test("command palette opens with Ctrl+K and navigates on Enter", async ({
+  page,
+}) => {
   await page.goto("/");
   await page.keyboard.press("Control+k");
   const dialog = page.getByRole("dialog", { name: "Quick navigation" });
@@ -93,7 +109,9 @@ test("command palette opens with Ctrl+K and navigates on Enter", async ({ page }
   await expect(page).toHaveURL(/\/work$/);
 });
 
-test("back-to-top button appears after scrolling and returns to top", async ({ page }) => {
+test("back-to-top button appears after scrolling and returns to top", async ({
+  page,
+}) => {
   await page.goto("/");
   await page.mouse.wheel(0, 2000);
   const button = page.getByRole("button", { name: "Back to top" });
@@ -102,9 +120,13 @@ test("back-to-top button appears after scrolling and returns to top", async ({ p
   await expect(page.locator("html")).toHaveJSProperty("scrollTop", 0);
 });
 
-test("writing article shows a table of contents and reading progress", async ({ page }) => {
+test("writing article shows a table of contents and reading progress", async ({
+  page,
+}) => {
   await page.goto("/writing/on-simplifying-dashboards");
-  await expect(page.getByRole("navigation", { name: "Table of contents" })).toHaveCount(0);
+  await expect(
+    page.getByRole("navigation", { name: "Table of contents" }),
+  ).toHaveCount(0);
   // (this sample post has < 2 headings, so TOC correctly does not render —
   // asserting absence here guards against it rendering empty)
 });
@@ -135,7 +157,11 @@ test("writing series shows part navigation", async ({ page }) => {
 test("? opens the keyboard shortcuts overlay", async ({ page }) => {
   await page.goto("/");
   await page.keyboard.press("?");
-  await expect(page.getByRole("dialog", { name: "Keyboard shortcuts" })).toBeVisible();
+  await expect(
+    page.getByRole("dialog", { name: "Keyboard shortcuts" }),
+  ).toBeVisible();
   await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog", { name: "Keyboard shortcuts" })).toBeHidden();
+  await expect(
+    page.getByRole("dialog", { name: "Keyboard shortcuts" }),
+  ).toBeHidden();
 });

@@ -21,7 +21,9 @@ describe("readingTime", () => {
 
 describe("slugify", () => {
   it("lowercases, strips punctuation, and hyphenates", () => {
-    expect(slugify("On Simplifying Dashboards!")).toBe("on-simplifying-dashboards");
+    expect(slugify("On Simplifying Dashboards!")).toBe(
+      "on-simplifying-dashboards",
+    );
   });
 
   it("collapses whitespace runs", () => {

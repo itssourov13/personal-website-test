@@ -5,6 +5,7 @@
 > in this repo: behavior changes get logged (see decision-log.md D-033+).
 
 ## Shipped this batch
+
 1. Command palette (⌘K / Ctrl+K) — nav + fuzzy search over work & writing
 2. Reading progress bar + auto-generated table of contents on articles
 3. Case-study cover images (cards + detail hero) — generated SVG placeholders,
@@ -16,6 +17,7 @@
 8. `/now` page (linked from About + footer + command palette)
 
 ## Considered, deliberately not built this batch
+
 - **View Transitions API** for route changes — still unstable/experimental
   in the Next.js version this plan targets; revisit once stable, don't ship
   unverified browser-support gaps on a premium site.
@@ -27,6 +29,7 @@
   as gimmicky rather than premium.
 
 ## Still open (candidates for a future batch)
+
 - Real photography to replace the generated SVG covers
 - Command palette result ranking beyond simple substring match
 
@@ -40,6 +43,7 @@
 > handful of new small features. See decision-log.md D-034+.
 
 ## Shipped this batch
+
 1. `/uses` page (tools & setup)
 2. "Trusted by" wordmark marquee on the home page (first real use of the
    `Marquee` component built in batch 1)
@@ -56,6 +60,7 @@
    other shortcuts as they're added
 
 ## Considered, deliberately not built this batch
+
 - **Image gallery lightbox** for the `gallery` frontmatter field — the two
   sample case studies still don't have real photography to gallery, and a
   lightbox for zero images would just be dead code; revisit once real

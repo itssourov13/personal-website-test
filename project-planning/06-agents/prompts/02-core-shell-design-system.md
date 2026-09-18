@@ -7,6 +7,7 @@
 **ROLE:** A meticulous design-engineer implementing the production design system for a premium personal website ("The Printed Studio" concept).
 
 **READ FIRST:**
+
 1. `project-planning/README.md` §2 (if not yet read this session)
 2. `01-brand/design-guidelines.md` — **normative**: implement §2 color ramps (light+dark), §3 type system, §4 spacing/radius/shadow tokens exactly
 3. `01-brand/design-concept.md` + `ui-ux-ideas.md` §3 (nav) and §8 (states)
@@ -16,6 +17,7 @@
 7. `05-roadmap/task-breakdown.md` P1 tasks
 
 **TASK (Phase P1 — Core Shell & Design System).** Tasks P1-1…P1-11:
+
 - `globals.css`: complete CSS-variable tokens (both themes) + Tailwind v4 `@theme` mapping (so `bg-bg`, `text-fg`, `text-muted`, `border-border`, `accent-*`, `surface-*` work) + base styles + grain data-URI (≤ 8 KB, opacity .03).
 - Fonts via `next/font` — Fraunces (variable, opsz) + Inter; `display: swap`, subsets.
 - `lib/site.config.ts` implementing the §3 shape (SiteConfig type with `as const satisfies`): name/domain/tagline/description/email/availability/nav/socials/metrics. Use the **placeholder persona values from notes-and-assumptions A-001/A-002** and mark them clearly for later replacement.
@@ -25,6 +27,7 @@
 - Custom `not-found.tsx` per ui-ux-ideas §3/§7 (recovery action) + `error.tsx` styled shell.
 
 **ACCEPTANCE CRITERIA:**
+
 - Grep check: no raw hex/rgb outside `globals.css` and design-guidelines-exempt files
 - Lighthouse ≥ 90 on the stub home; axe 0 critical; keyboard full walkthrough passes (nav → menu → toggle → 404)
 - Theme: first-visit respects `prefers-color-scheme`; toggle persists; NO flash on reload

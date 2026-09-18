@@ -12,28 +12,28 @@
 
 ## 2. Breakpoint system (Tailwind defaults + our usage)
 
-| Token | Min-width | Used for |
-|---|---|---|
-| `sm` | 640 px | Multi-column meta rows, 2-col grids |
-| `md` | 768 px | Cards grid 2→3, footer 2-col |
-| `lg` | 1024 px | Desktop nav replaces hamburger; hero side-by-side; 12-col grid rolls out |
-| `xl` | 1280 px | Max-width 1200 content constraint kicks in |
-| `2xl` | 1536 px | Rare: oversized imagery padding |
+| Token | Min-width | Used for                                                                 |
+| ----- | --------- | ------------------------------------------------------------------------ |
+| `sm`  | 640 px    | Multi-column meta rows, 2-col grids                                      |
+| `md`  | 768 px    | Cards grid 2→3, footer 2-col                                             |
+| `lg`  | 1024 px   | Desktop nav replaces hamburger; hero side-by-side; 12-col grid rolls out |
+| `xl`  | 1280 px   | Max-width 1200 content constraint kicks in                               |
+| `2xl` | 1536 px   | Rare: oversized imagery padding                                          |
 
 Rules: breakpoints are **increase-only** (mobile-first); never query `max-width` for layout (exceptions: sticky-header shrink, motion, print).
 
 ## 3. Layout adaptation table
 
-| Component/Page | 320–639 | 640–1023 | 1024+ |
-|---|---|---|---|
-| Header | Wordmark + availability dot + hamburger | same | Full nav + pill + toggle |
-| Hero (Home) | Stacked; Display1 clamp | same | Statement max 26 chars/line; optional secondary column with portrait/artifact |
-| Work grid | 1 col | 2 col | 3 col (2 featured span) |
-| Case study | Stacked; metric band 2×2 | metric band 2×2 | metric band 4-in-row; side context rail |
-| Services cards | 1 col | 2 col | 3 col |
-| Notes list | 1 col | 2 col | 1 col + sidebar (tags, RSS) at xl |
-| Prose width | full (≤ 76ch) | full | 760 px centered |
-| Footer | stacked zones | 2×2 | 4-col |
+| Component/Page | 320–639                                 | 640–1023        | 1024+                                                                         |
+| -------------- | --------------------------------------- | --------------- | ----------------------------------------------------------------------------- |
+| Header         | Wordmark + availability dot + hamburger | same            | Full nav + pill + toggle                                                      |
+| Hero (Home)    | Stacked; Display1 clamp                 | same            | Statement max 26 chars/line; optional secondary column with portrait/artifact |
+| Work grid      | 1 col                                   | 2 col           | 3 col (2 featured span)                                                       |
+| Case study     | Stacked; metric band 2×2                | metric band 2×2 | metric band 4-in-row; side context rail                                       |
+| Services cards | 1 col                                   | 2 col           | 3 col                                                                         |
+| Notes list     | 1 col                                   | 2 col           | 1 col + sidebar (tags, RSS) at xl                                             |
+| Prose width    | full (≤ 76ch)                           | full            | 760 px centered                                                               |
+| Footer         | stacked zones                           | 2×2             | 4-col                                                                         |
 
 ## 4. Fluid type & spacing (tokens already defined in design-guidelines §3–4)
 
@@ -51,13 +51,13 @@ Rules: breakpoints are **increase-only** (mobile-first); never query `max-width`
 
 ## 6. Interaction adaptation (touch vs pointer vs keyboard)
 
-| Interaction | Mobile (touch) | Desktop (pointer) | Keyboard |
-|---|---|---|---|
-| Hover previews (SelectedWork) | Tap toggles inline detail | Hover swaps media | Focus reveals detail (focus-within) |
-| Marquee | Static scroll-free row (or pause) | Animated | Static |
-| Filters | Horizontal scrollable chip row (`overflow-x: auto`, `scrollbar-gutter`) | Full chip row | Arrow-key navigation with radiogroup semantics |
-| Sticky header | Stay compact; no shrink animation | Shrink + hairline on scroll | n/a |
-| Magnetic/cursor effects | Disabled (no hover) | Enabled, pointer fine only | Disabled |
+| Interaction                   | Mobile (touch)                                                          | Desktop (pointer)           | Keyboard                                       |
+| ----------------------------- | ----------------------------------------------------------------------- | --------------------------- | ---------------------------------------------- |
+| Hover previews (SelectedWork) | Tap toggles inline detail                                               | Hover swaps media           | Focus reveals detail (focus-within)            |
+| Marquee                       | Static scroll-free row (or pause)                                       | Animated                    | Static                                         |
+| Filters                       | Horizontal scrollable chip row (`overflow-x: auto`, `scrollbar-gutter`) | Full chip row               | Arrow-key navigation with radiogroup semantics |
+| Sticky header                 | Stay compact; no shrink animation                                       | Shrink + hairline on scroll | n/a                                            |
+| Magnetic/cursor effects       | Disabled (no hover)                                                     | Enabled, pointer fine only  | Disabled                                       |
 
 **Hover-only content rule:** any hover reveal is mirrored on `:focus-visible` and `:active` (WCAG 1.4.13 + 2.1.1).
 

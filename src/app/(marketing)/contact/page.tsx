@@ -8,7 +8,9 @@ import { siteConfig } from "@/lib/site.config";
 export const metadata: Metadata = {
   title: "Contact",
   description: `Get in touch with ${siteConfig.name} about a project.`,
-  openGraph: { images: [`/og/contact?title=${encodeURIComponent("Let's talk")}`] },
+  openGraph: {
+    images: [`/og/contact?title=${encodeURIComponent("Let's talk")}`],
+  },
 };
 
 export default function ContactPage() {

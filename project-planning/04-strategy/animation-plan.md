@@ -1,6 +1,6 @@
 # Animation & Interaction Plan
 
-> ✅ Approved baseline (D-004). Concept "The Printed Studio" (01-brand/design-concept.md §5) requires motion that is *quiet, precise, never gratuitous*. Motion must never cost the performance budget (04-strategy/performance-plan.md) and must disappear under reduced motion (D-015).
+> ✅ Approved baseline (D-004). Concept "The Printed Studio" (01-brand/design-concept.md §5) requires motion that is _quiet, precise, never gratuitous_. Motion must never cost the performance budget (04-strategy/performance-plan.md) and must disappear under reduced motion (D-015).
 
 ## 1. Motion principles
 
@@ -13,48 +13,51 @@
 
 ## 2. Motion token set (single source — implement as constants)
 
-| Token | Value |
-|---|---|
-| `--dur-fast` | 150 ms |
-| `--dur-base` | 250 ms |
-| `--dur-slow` | 400 ms |
-| `--dur-hero` | 600 ms |
-| Ease standard | `cubic-bezier(0.65, 0, 0.35, 1)` |
-| Ease decelerate (entrances) | `cubic-bezier(0.16, 1, 0.3, 1)` |
-| Ease accelerate (exits) | `cubic-bezier(0.7, 0, 0.84, 0)` |
-| Spring (micro) | `{ type: "spring", stiffness: 380, damping: 30 }` |
-| Reveal distance | 16–24 px |
-| Stagger | 40–80 ms between items (max 6 steps) |
+| Token                       | Value                                             |
+| --------------------------- | ------------------------------------------------- |
+| `--dur-fast`                | 150 ms                                            |
+| `--dur-base`                | 250 ms                                            |
+| `--dur-slow`                | 400 ms                                            |
+| `--dur-hero`                | 600 ms                                            |
+| Ease standard               | `cubic-bezier(0.65, 0, 0.35, 1)`                  |
+| Ease decelerate (entrances) | `cubic-bezier(0.16, 1, 0.3, 1)`                   |
+| Ease accelerate (exits)     | `cubic-bezier(0.7, 0, 0.84, 0)`                   |
+| Spring (micro)              | `{ type: "spring", stiffness: 380, damping: 30 }` |
+| Reveal distance             | 16–24 px                                          |
+| Stagger                     | 40–80 ms between items (max 6 steps)              |
 
 ## 3. Animation inventory (v1 — complete list)
 
 ### Entrances
-| Animation | Trigger | Spec | Component |
-|---|---|---|---|
-| Hero intro | Home load | Wordmark fades/rises 12 px (250 ms), statement line follows (300 ms), CTAs (150 ms staggered) — `--dur-hero` total ≤ 800 ms | `Hero` |
-| Reveal on scroll | All sections | Fade + 16–24 px rise, 400 ms ease-decelerate, once; `StaggerGroup` offsets 40–80 ms | `Reveal`, `StaggerGroup` |
-| Page transition | Route change | Fade + 8 px rise, 250 ms; View Transitions API where supported, Motion fallback; focus → main heading | `PageTransition` |
-| Menu overlay | Mobile nav open | Links stagger in 150–250 ms; overlay fade 200 ms | `MobileNav` |
+
+| Animation        | Trigger         | Spec                                                                                                                        | Component                |
+| ---------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| Hero intro       | Home load       | Wordmark fades/rises 12 px (250 ms), statement line follows (300 ms), CTAs (150 ms staggered) — `--dur-hero` total ≤ 800 ms | `Hero`                   |
+| Reveal on scroll | All sections    | Fade + 16–24 px rise, 400 ms ease-decelerate, once; `StaggerGroup` offsets 40–80 ms                                         | `Reveal`, `StaggerGroup` |
+| Page transition  | Route change    | Fade + 8 px rise, 250 ms; View Transitions API where supported, Motion fallback; focus → main heading                       | `PageTransition`         |
+| Menu overlay     | Mobile nav open | Links stagger in 150–250 ms; overlay fade 200 ms                                                                            | `MobileNav`              |
 
 ### Micro-interactions
-| Interaction | Spec |
-|---|---|
-| Inline links | Copper underline grows left→right 150 ms (motion-safe) |
-| Buttons | Arrow translates 2–3 px on hover/focus; bg deepens 150 ms |
-| Cards (work) | Lift 2 px + shadow-md + copper hairline, 250 ms spring-lite |
-| SelectedWork hover/focus | Media crossfade + caption swap 300 ms (focus mirror) |
-| Theme toggle | Content crossfade 250 ms; icon swap with micro-rotate |
-| Availability pill | Soft pulse only while "booking" status (motion-safe, opacity) |
-| Form submit | Button shows inline spinner (rotates, no layout shift); success card fades up 250 ms |
-| Metric counters | Count-up 600–900 ms on reveal (spring-damped), `aria-hidden` (final value in DOM for SR) — reduced-motion: show final value |
-| Scroll progress (notes) | Thin copper bar: width = scroll %, 0 jumps (transform scaleX) |
+
+| Interaction              | Spec                                                                                                                        |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| Inline links             | Copper underline grows left→right 150 ms (motion-safe)                                                                      |
+| Buttons                  | Arrow translates 2–3 px on hover/focus; bg deepens 150 ms                                                                   |
+| Cards (work)             | Lift 2 px + shadow-md + copper hairline, 250 ms spring-lite                                                                 |
+| SelectedWork hover/focus | Media crossfade + caption swap 300 ms (focus mirror)                                                                        |
+| Theme toggle             | Content crossfade 250 ms; icon swap with micro-rotate                                                                       |
+| Availability pill        | Soft pulse only while "booking" status (motion-safe, opacity)                                                               |
+| Form submit              | Button shows inline spinner (rotates, no layout shift); success card fades up 250 ms                                        |
+| Metric counters          | Count-up 600–900 ms on reveal (spring-damped), `aria-hidden` (final value in DOM for SR) — reduced-motion: show final value |
+| Scroll progress (notes)  | Thin copper bar: width = scroll %, 0 jumps (transform scaleX)                                                               |
 
 ### Decorative (optional, pointer-only, motion-safe gated)
-| Effect | Restraint rules |
-|---|---|
-| CursorGlow | Copper radial glow following pointer; opacity ≤ 14%; disabled < lg + reduced-motion + touch |
-| Magnetic buttons (CTA only) | ≤ 4 px translate toward cursor, springs back 200 ms |
-| Marquee (client names) | 20–30 s loop, edge fade masks, pause on hover/focus |
+
+| Effect                      | Restraint rules                                                                             |
+| --------------------------- | ------------------------------------------------------------------------------------------- |
+| CursorGlow                  | Copper radial glow following pointer; opacity ≤ 14%; disabled < lg + reduced-motion + touch |
+| Magnetic buttons (CTA only) | ≤ 4 px translate toward cursor, springs back 200 ms                                         |
+| Marquee (client names)      | 20–30 s loop, edge fade masks, pause on hover/focus                                         |
 
 ## 4. Scroll & page-motion systems
 
@@ -64,13 +67,13 @@
 
 ## 5. Reduced-motion & capability gating (normative)
 
-| Context | Behavior |
-|---|---|
-| `prefers-reduced-motion: reduce` | All entrances reveal instantly at final state; counters final; Lenis off; marquee static; transitions instant; no cursor effects; no magnetic; no pulse |
-| No JavaScript | Every animated component renders its static (reduced-motion) state server-side — identical markup |
-| Touch device | Cursor effects/magnetic/marquee animation off; hover previews → tap pattern (responsive-strategy §6) |
-| `prefers-contrast: more` | Keep animation; ensure no information conveyed by motion alone |
-| Battery saver / `navigator.deviceMemory` low (optional) | Could disable marquee/glow — decide at P4; low priority |
+| Context                                                 | Behavior                                                                                                                                                |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `prefers-reduced-motion: reduce`                        | All entrances reveal instantly at final state; counters final; Lenis off; marquee static; transitions instant; no cursor effects; no magnetic; no pulse |
+| No JavaScript                                           | Every animated component renders its static (reduced-motion) state server-side — identical markup                                                       |
+| Touch device                                            | Cursor effects/magnetic/marquee animation off; hover previews → tap pattern (responsive-strategy §6)                                                    |
+| `prefers-contrast: more`                                | Keep animation; ensure no information conveyed by motion alone                                                                                          |
+| Battery saver / `navigator.deviceMemory` low (optional) | Could disable marquee/glow — decide at P4; low priority                                                                                                 |
 
 ## 6. Implementation rules for agents
 

@@ -1,6 +1,6 @@
 # Brand Identity
 
-> ✅ Approved baseline direction. Working persona is a placeholder (A-001) — replace details via the customization checklist; the *direction* stays unless the owner overrides it.
+> ✅ Approved baseline direction. Working persona is a placeholder (A-001) — replace details via the customization checklist; the _direction_ stays unless the owner overrides it.
 
 ## 1. Positioning statement
 
@@ -14,13 +14,13 @@
 
 **The Quiet Expert — confident, warm, precise.** Think a well-made mechanical watch: no logo shout, exact tolerances, obvious quality to anyone who looks closely.
 
-| Trait axis | Lean toward | Avoid |
-|---|---|---|
-| Confidence | Calm authority, evidence-based claims | Hype, superlatives, "10x growth guru" |
-| Warmth | Direct, human, first-person voice | Corporate we-speak, jargon |
-| Verve | Playful detail in microcopy and motion | Filler, puns everywhere, clutter |
-| Polish | Restraint, whitespace, precision | Decoration for its own sake |
-| Accessibility | Plain language, generous contrast | Insider phrasing |
+| Trait axis    | Lean toward                            | Avoid                                 |
+| ------------- | -------------------------------------- | ------------------------------------- |
+| Confidence    | Calm authority, evidence-based claims  | Hype, superlatives, "10x growth guru" |
+| Warmth        | Direct, human, first-person voice      | Corporate we-speak, jargon            |
+| Verve         | Playful detail in microcopy and motion | Filler, puns everywhere, clutter      |
+| Polish        | Restraint, whitespace, precision       | Decoration for its own sake           |
+| Accessibility | Plain language, generous contrast      | Insider phrasing                      |
 
 ## 3. Brand voice & tone
 
@@ -44,13 +44,13 @@
 
 ## 5. Name & grammar rules
 
-| Item | Rule | Example |
-|---|---|---|
-| Personal name | As the owner spells it; never shortened in first mentions | "Sourov Mondol" |
-| Site/domain | lowercase, no www in copy | sourovmondol.studio |
-| Company-ish label | Avoid; the person IS the brand | — |
-| Client names | First mention full; anonymize where NDA ("a fintech scale-up") | "Finta (name changed)" |
-| Numbers/metrics | specific, honest, rounded where appropriate | "raised completion by ~22%" |
+| Item              | Rule                                                           | Example                     |
+| ----------------- | -------------------------------------------------------------- | --------------------------- |
+| Personal name     | As the owner spells it; never shortened in first mentions      | "Sourov Mondol"             |
+| Site/domain       | lowercase, no www in copy                                      | sourovmondol.studio         |
+| Company-ish label | Avoid; the person IS the brand                                 | —                           |
+| Client names      | First mention full; anonymize where NDA ("a fintech scale-up") | "Finta (name changed)"      |
+| Numbers/metrics   | specific, honest, rounded where appropriate                    | "raised completion by ~22%" |
 
 ## 6. Visual identity pillars (details in `design-concept.md` + `design-guidelines.md`)
 
@@ -69,6 +69,6 @@ craft · precision · shipped · measurable · senior · independent · editoria
 ## 8. Social & profile consistency (brand hygiene)
 
 - Same wordmark on GitHub, LinkedIn, X/Twitter, Dribbble, email signature.
-- Bio line everywhere: *"Independent product designer & engineer. I turn ambitious products into shipped, measurable design."* + site link.
+- Bio line everywhere: _"Independent product designer & engineer. I turn ambitious products into shipped, measurable design."_ + site link.
 - Consistent avatar (the dot mark or a portrait per owner's choice).
 - Include in customization checklist (`09-decisions/handoff-documentation.md` §C1).

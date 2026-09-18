@@ -11,7 +11,13 @@ import TestimonialPullQuote from "@/components/sections/TestimonialPullQuote";
 import Badge from "@/components/ui/Badge";
 import Prose from "@/components/ui/Prose";
 import Section from "@/components/ui/Section";
-import { getAllWork, getRelatedNotesForWork, getTopics, getWorkBySlug, renderMarkdown } from "@/lib/content";
+import {
+  getAllWork,
+  getRelatedNotesForWork,
+  getTopics,
+  getWorkBySlug,
+  renderMarkdown,
+} from "@/lib/content";
 import { breadcrumbJsonLd, jsonLdScript, workJsonLd } from "@/lib/seo";
 import { slugify } from "@/lib/utils";
 import { testimonials } from "@data/testimonials";
@@ -107,10 +113,12 @@ export default async function WorkCaseStudyPage({
 
       {item.cover ? (
         <Section className="pt-0 pb-8">
+          {/* eslint-disable-next-line @next/next/no-img-element -- local
+          hand-rolled SVG asset; the image optimizer adds no value here. */}
           <img
             src={item.cover}
             alt={`Cover image for ${item.title}`}
-            className="w-full rounded-md border border-border"
+            className="border-border w-full rounded-md border"
           />
         </Section>
       ) : null}
@@ -133,11 +141,16 @@ export default async function WorkCaseStudyPage({
 
       {relatedNotes.length > 0 ? (
         <Section className="border-border border-t pt-16">
-          <p className="text-overline text-accent-strong mb-4">Related writing</p>
+          <p className="text-overline text-accent-strong mb-4">
+            Related writing
+          </p>
           <ul className="flex flex-col gap-3">
             {relatedNotes.map((note) => (
               <li key={note.slug}>
-                <Link href={`/writing/${note.slug}`} className="font-medium hover:underline">
+                <Link
+                  href={`/writing/${note.slug}`}
+                  className="font-medium hover:underline"
+                >
                   {note.title}
                 </Link>
               </li>

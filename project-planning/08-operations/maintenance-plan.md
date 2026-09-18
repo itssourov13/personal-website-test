@@ -5,29 +5,29 @@
 ## 1. Operating model
 
 - **Owner = maintainer.** Agents execute on the owner's command or via scheduled prompts; never auto-merge to production without review (branch protection).
-- Everything here is designed to be *small and repeatable*: a checklist, not a project.
+- Everything here is designed to be _small and repeatable_: a checklist, not a project.
 - **Time budget:** routine work (deps, monitoring, small fixes) ≤ 2 h/month; content publishing ≤ 1 h per piece (drafts drafted by AI agent, owner edits + approves — A-007).
 
 ## 2. Recurring calendar
 
-| Cadence | Activity | Owner | Agent-assist | Est. time |
-|---|---|---|---|---|
-| Daily (2 min) | Glance: Plausible anomaly + Vercel alerts + inbox | ✓ | — | 2 min |
-| Weekly (15 min) | Renovate/Dependabot PRs: merge green ones; `pnpm audit` check; GH security alerts triage | ✓ | prepares PRs, summaries | 15 min |
-| Monthly (30–45 min) | Analytics review vs G-1…G-4 targets; LCP/CWV field check (CrUX); Lighthouse CI trend; decision-log review; backlog tidy | ✓ | builds the report (scripted queries) | 30–45 min |
-| Quarterly (1–2 h) | Full a11y sweep (axe + keyboard + SR spot per accessibility §7 script); security checklist re-run (security §8); backup/rotation review (any secrets/accounts); content strategy review | ✓ | runs sweeps, reports | 1–2 h |
-| After every content publish | `check-content.mjs` clean; preview visual pass; link check | ✓ | runs checks | 10 min |
+| Cadence                     | Activity                                                                                                                                                                                | Owner | Agent-assist                         | Est. time |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------ | --------- |
+| Daily (2 min)               | Glance: Plausible anomaly + Vercel alerts + inbox                                                                                                                                       | ✓     | —                                    | 2 min     |
+| Weekly (15 min)             | Renovate/Dependabot PRs: merge green ones; `pnpm audit` check; GH security alerts triage                                                                                                | ✓     | prepares PRs, summaries              | 15 min    |
+| Monthly (30–45 min)         | Analytics review vs G-1…G-4 targets; LCP/CWV field check (CrUX); Lighthouse CI trend; decision-log review; backlog tidy                                                                 | ✓     | builds the report (scripted queries) | 30–45 min |
+| Quarterly (1–2 h)           | Full a11y sweep (axe + keyboard + SR spot per accessibility §7 script); security checklist re-run (security §8); backup/rotation review (any secrets/accounts); content strategy review | ✓     | runs sweeps, reports                 | 1–2 h     |
+| After every content publish | `check-content.mjs` clean; preview visual pass; link check                                                                                                                              | ✓     | runs checks                          | 10 min    |
 
 ## 3. Monitoring (from security §7 + performance §4)
 
-| Signal | Tool | Threshold → action |
-|---|---|---|
-| Uptime | UptimeRobot (free) or Vercel status page | Down > 5 min → check Vercel dashboard → rollback/redeploy |
-| Errors | Vercel production alerts (crash/error rate) + Plausible | Error rate spike → check function logs (counters only, no bodies) |
-| Performance | Lighthouse CI trend + CrUX (GSC) + Plausible | LCP/INP drift > 10% vs baseline → perf regression hunt (images/fonts/deps) |
-| SEO | GSC impressions/clicks + sitemap coverage | Impressions drop → check structured data/sitemap/robots/404s |
-| Security | GH security alerts + `pnpm audit` + email bounce notices | CVE → Renovate fix PR or manual pin; rotate any exposed key immediately (D-022) |
-| Form health | Test email yourself each month; rate-limit logs counters | No email received → check env vars/Resend/Upstash; test 503 fallback UX |
+| Signal      | Tool                                                     | Threshold → action                                                              |
+| ----------- | -------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Uptime      | UptimeRobot (free) or Vercel status page                 | Down > 5 min → check Vercel dashboard → rollback/redeploy                       |
+| Errors      | Vercel production alerts (crash/error rate) + Plausible  | Error rate spike → check function logs (counters only, no bodies)               |
+| Performance | Lighthouse CI trend + CrUX (GSC) + Plausible             | LCP/INP drift > 10% vs baseline → perf regression hunt (images/fonts/deps)      |
+| SEO         | GSC impressions/clicks + sitemap coverage                | Impressions drop → check structured data/sitemap/robots/404s                    |
+| Security    | GH security alerts + `pnpm audit` + email bounce notices | CVE → Renovate fix PR or manual pin; rotate any exposed key immediately (D-022) |
+| Form health | Test email yourself each month; rate-limit logs counters | No email received → check env vars/Resend/Upstash; test 503 fallback UX         |
 
 ## 4. Content workflow (publishing a note or case study)
 
@@ -39,7 +39,7 @@
 
 ## 5. Dependency & security upkeep
 
-- Weekly: merge green Renovate PRs; any major version → do it as a *planned task* (run a11y + perf suite — tech-stack §6), not a blind merge.
+- Weekly: merge green Renovate PRs; any major version → do it as a _planned task_ (run a11y + perf suite — tech-stack §6), not a blind merge.
 - `pnpm.onlyBuiltDependencies` reviewed whenever a new package with postinstall appears.
 - Rotation policy: contact/Rate-limit keys rotated every 12 months on the calendar (set reminder); immediately on suspected leak.
 - Accounts audit (quarterly): Vercel org 2FA, GitHub PATs, GSC/Plausible access; remove stale tokens.
@@ -56,13 +56,13 @@
 
 ## 7. Post-launch analytics program (tie-in with G-1…G-4)
 
-| Question | Data source | Review at |
-|---|---|---|
-| Are case studies being read? | Plausible per-path + time-on-page proxies | Monthly |
-| Is the reader finding contact? | Contact conversion rate from /work + /writing CTAs | Monthly |
-| Are we ranking? | GSC impressions for the 3 keyword clusters (seo-strategy §2) | Monthly |
-| Is it fast in the field? | CrUX + LCP budget pass rate (G-5) | Monthly |
-| Is the system fresh? | Content calendar vs read growth; quarterly strategy | Quarterly |
+| Question                       | Data source                                                  | Review at |
+| ------------------------------ | ------------------------------------------------------------ | --------- |
+| Are case studies being read?   | Plausible per-path + time-on-page proxies                    | Monthly   |
+| Is the reader finding contact? | Contact conversion rate from /work + /writing CTAs           | Monthly   |
+| Are we ranking?                | GSC impressions for the 3 keyword clusters (seo-strategy §2) | Monthly   |
+| Is it fast in the field?       | CrUX + LCP budget pass rate (G-5)                            | Monthly   |
+| Is the system fresh?           | Content calendar vs read growth; quarterly strategy          | Quarterly |
 
 First 30-day review is **P8-1** (task in roadmap); its findings update targets in this document.
 
@@ -73,12 +73,12 @@ First 30-day review is **P8-1** (task in roadmap); its findings update targets i
 
 ## 9. Baseline record (populated at P5-9 / P7-5)
 
-| Metric | Baseline (set at launch) | Target (G-*) |
-|---|---|---|
-| LCP (p75, mobile) | *TBD* | ≤ 1.8 s |
-| INP (p75) | *TBD* | ≤ 200 ms |
-| Lighthouse perf/SEO/a11y/BP | *TBD* | ≥ 95 / ≥ 98 / ≥ 98 / ≥ 98 |
-| Total page weight / initial JS | *TBD* | ≤ 150 KB gz initial JS |
-| Plausible weekly visits | *TBD* | — |
-| GSC impressions (3 clusters) | *TBD* | top-10 for 3 clusters |
-| Maintenance time/month | *TBD* | < 2 h |
+| Metric                         | Baseline (set at launch) | Target (G-*)              |
+| ------------------------------ | ------------------------ | ------------------------- |
+| LCP (p75, mobile)              | _TBD_                    | ≤ 1.8 s                   |
+| INP (p75)                      | _TBD_                    | ≤ 200 ms                  |
+| Lighthouse perf/SEO/a11y/BP    | _TBD_                    | ≥ 95 / ≥ 98 / ≥ 98 / ≥ 98 |
+| Total page weight / initial JS | _TBD_                    | ≤ 150 KB gz initial JS    |
+| Plausible weekly visits        | _TBD_                    | —                         |
+| GSC impressions (3 clusters)   | _TBD_                    | top-10 for 3 clusters     |
+| Maintenance time/month         | _TBD_                    | < 2 h                     |

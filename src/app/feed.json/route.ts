@@ -24,7 +24,9 @@ export function GET() {
       title: note.title,
       summary: note.summary,
       date_published: new Date(note.published).toISOString(),
-      ...(note.updated ? { date_modified: new Date(note.updated).toISOString() } : {}),
+      ...(note.updated
+        ? { date_modified: new Date(note.updated).toISOString() }
+        : {}),
       tags: note.tags,
     })),
   };

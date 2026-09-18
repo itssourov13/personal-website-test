@@ -5,7 +5,11 @@ import { useEffect, useRef } from "react";
 /** Adds a "Copy" button to every <pre><code> block inside its children,
  * client-side, after mount. Keeps Prose's rendered HTML untouched so the
  * server output stays plain and cacheable. */
-export default function CodeBlockEnhancer({ children }: { children: React.ReactNode }) {
+export default function CodeBlockEnhancer({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

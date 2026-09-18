@@ -109,7 +109,11 @@ export default async function WritingArticlePage({
 
       <Section id="article-content" className="pt-0">
         {note.series ? (
-          <SeriesNav seriesName={note.series} items={seriesItems} currentSlug={note.slug} />
+          <SeriesNav
+            seriesName={note.series}
+            items={seriesItems}
+            currentSlug={note.slug}
+          />
         ) : null}
         <TableOfContents headings={headings} />
         <CodeBlockEnhancer>

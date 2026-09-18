@@ -8,8 +8,8 @@ import Field from "@/components/ui/Field";
 import Input from "@/components/ui/Input";
 import Spinner from "@/components/ui/Spinner";
 import Textarea from "@/components/ui/Textarea";
-import { siteConfig } from "@/lib/site.config";
 import { contactSchema, type ContactInput } from "@/lib/schema";
+import { siteConfig } from "@/lib/site.config";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
@@ -44,7 +44,9 @@ export default function ContactForm() {
         const body = (await response.json().catch(() => null)) as {
           message?: string;
         } | null;
-        throw new Error(body?.message ?? "Something went wrong. Please try again.");
+        throw new Error(
+          body?.message ?? "Something went wrong. Please try again.",
+        );
       }
 
       setState("success");
@@ -65,19 +67,28 @@ export default function ContactForm() {
         ref={(node) => node?.focus()}
         className="text-success text-lg outline-none"
       >
-        Thanks — that&apos;s sent. I&apos;ll get back to you within two
-        business days.
+        Thanks — that&apos;s sent. I&apos;ll get back to you within two business
+        days.
       </p>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-5">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      className="flex flex-col gap-5"
+    >
       {/* Honeypot — hidden from sighted/keyboard users, visible to bots that
           fill every field. Real users never see or touch this. */}
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <label htmlFor="company">Company</label>
-        <input id="company" tabIndex={-1} autoComplete="off" {...register("company")} />
+        <input
+          id="company"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register("company")}
+        />
       </div>
 
       <Field label="Name" htmlFor="name" error={errors.name?.message}>
@@ -102,10 +113,18 @@ export default function ContactForm() {
       </Field>
 
       <Field label="Budget (optional)" htmlFor="budget">
-        <Input id="budget" placeholder="e.g. $10k–20k" {...register("budget")} />
+        <Input
+          id="budget"
+          placeholder="e.g. $10k–20k"
+          {...register("budget")}
+        />
       </Field>
 
-      <Field label="Project details" htmlFor="message" error={errors.message?.message}>
+      <Field
+        label="Project details"
+        htmlFor="message"
+        error={errors.message?.message}
+      >
         <Textarea
           id="message"
           aria-invalid={!!errors.message}
@@ -127,15 +146,15 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={state === "submitting"}
-        className="min-h-11 flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-accent-foreground hover:bg-accent-strong disabled:opacity-60"
+        className="bg-accent text-accent-foreground hover:bg-accent-strong flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-3 font-medium disabled:opacity-60"
       >
         {state === "submitting" ? <Spinner /> : null}
         {state === "submitting" ? "Sending…" : "Send message"}
       </button>
 
       <p className="text-faint text-xs">
-        Your details are used only to reply to this message — no mailing
-        list, no tracking.
+        Your details are used only to reply to this message — no mailing list,
+        no tracking.
       </p>
     </form>
   );

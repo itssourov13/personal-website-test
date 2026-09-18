@@ -6,8 +6,11 @@ import { getAllWork } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Case studies from recent product design and engineering projects.",
-  openGraph: { images: [`/og/work?title=${encodeURIComponent("Selected work")}`] },
+  description:
+    "Case studies from recent product design and engineering projects.",
+  openGraph: {
+    images: [`/og/work?title=${encodeURIComponent("Selected work")}`],
+  },
 };
 
 export default function WorkIndexPage() {

@@ -5,11 +5,11 @@
 
 ## 1. One-paragraph summary
 
-We are building a **premium personal website** for a senior product designer and front-end engineer (working persona: *Sourov Mondol* — placeholder, see A-001). The site functions as the owner's professional home base: a portfolio, thought-leadership platform, and conversion tool for consulting engagements — presented with the editorial polish and craft of a high-end design studio. It is not a template site: every pixel, interaction, and word is deliberate, and the tech behind it is as clean as the interface.
+We are building a **premium personal website** for a senior product designer and front-end engineer (working persona: _Sourov Mondol_ — placeholder, see A-001). The site functions as the owner's professional home base: a portfolio, thought-leadership platform, and conversion tool for consulting engagements — presented with the editorial polish and craft of a high-end design studio. It is not a template site: every pixel, interaction, and word is deliberate, and the tech behind it is as clean as the interface.
 
 ## 2. What "premium" means for this project (working definition)
 
-Premium is a *quality bar*, not a style:
+Premium is a _quality bar_, not a style:
 
 1. **Craft over decoration** — restrained design, generous whitespace, precise typography, deliberate motion.
 2. **Details at every size** — from favicon to 4K desktop, from 150 ms hover states to 404 pages.
@@ -23,17 +23,17 @@ Premium is a *quality bar*, not a style:
 
 ## 4. Key facts (canonical — see decision log for IDs)
 
-| Dimension | Value |
-|---|---|
-| Category | Personal website / portfolio + blog |
-| Positioning | Independent product designer & engineer; "design-led engineering for ambitious product teams" |
-| Primary job | Win the reader's trust → showcase work → start a conversation |
-| v1 pages | 9 routes (see §6) |
-| Stack | Next.js 15 + TypeScript + Tailwind v4 + MDX (D-001..D-013) |
-| Hosting | Vercel (D-007) |
-| Analytics | Plausible, privacy-first (D-008) |
-| Deadline style | Quality-gated, not date-gated; ~8 weeks part-time (10–15 h/wk) |
-| Maintenance | Single maintainer; low-touch by design |
+| Dimension      | Value                                                                                         |
+| -------------- | --------------------------------------------------------------------------------------------- |
+| Category       | Personal website / portfolio + blog                                                           |
+| Positioning    | Independent product designer & engineer; "design-led engineering for ambitious product teams" |
+| Primary job    | Win the reader's trust → showcase work → start a conversation                                 |
+| v1 pages       | 9 routes (see §6)                                                                             |
+| Stack          | Next.js 15 + TypeScript + Tailwind v4 + MDX (D-001..D-013)                                    |
+| Hosting        | Vercel (D-007)                                                                                |
+| Analytics      | Plausible, privacy-first (D-008)                                                              |
+| Deadline style | Quality-gated, not date-gated; ~8 weeks part-time (10–15 h/wk)                                |
+| Maintenance    | Single maintainer; low-touch by design                                                        |
 
 ## 5. Success at a glance
 
@@ -44,15 +44,15 @@ Premium is a *quality bar*, not a style:
 
 ## 6. v1 deliverables (high level)
 
-| # | Area | Deliverable |
-|---|------|-------------|
-| 1 | Home | Hero, capability statement, selected work, services summary, social proof, CTA + footer |
-| 2 | Work | Project index with filters + full case study pages (story-structured, métrics where available) |
-| 3 | About | Bio, principles, toolkit, career highlights, personal touch |
-| 4 | Services | Offerings, engagement models, "how we work", FAQ, CTA |
-| 5 | Writing | Notes index + article pages (MDX, RSS feed) |
-| 6 | Contact | Validated contact form → email (Resend), response-time promise |
-| 7 | Global | Dark/light theme, smooth scroll, page transitions, 404, SEO/OG/RSS foundation |
+| #   | Area     | Deliverable                                                                                    |
+| --- | -------- | ---------------------------------------------------------------------------------------------- |
+| 1   | Home     | Hero, capability statement, selected work, services summary, social proof, CTA + footer        |
+| 2   | Work     | Project index with filters + full case study pages (story-structured, métrics where available) |
+| 3   | About    | Bio, principles, toolkit, career highlights, personal touch                                    |
+| 4   | Services | Offerings, engagement models, "how we work", FAQ, CTA                                          |
+| 5   | Writing  | Notes index + article pages (MDX, RSS feed)                                                    |
+| 6   | Contact  | Validated contact form → email (Resend), response-time promise                                 |
+| 7   | Global   | Dark/light theme, smooth scroll, page transitions, 404, SEO/OG/RSS foundation                  |
 
 See `02-features/feature-list.md` for the full matrix and `03-architecture/routing-and-pages.md` for per-page specs.
 

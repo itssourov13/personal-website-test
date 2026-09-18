@@ -1,6 +1,13 @@
 import type { MetadataRoute } from "next";
 
-import { getAllIdeas, getAllLab, getAllLife, getAllNotes, getAllWork, getTopics } from "@/lib/content";
+import {
+  getAllIdeas,
+  getAllLab,
+  getAllLife,
+  getAllNotes,
+  getAllWork,
+  getTopics,
+} from "@/lib/content";
 import { siteConfig } from "@/lib/site.config";
 import { bookmarks } from "@data/bookmarks";
 import { photos } from "@data/photos";

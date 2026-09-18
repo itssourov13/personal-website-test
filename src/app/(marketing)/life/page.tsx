@@ -26,7 +26,10 @@ const kindLabel: Record<string, string> = {
 
 export default async function LifePage() {
   const rendered = await Promise.all(
-    entries.map(async (entry) => ({ entry, html: await renderMarkdown(entry.body) })),
+    entries.map(async (entry) => ({
+      entry,
+      html: await renderMarkdown(entry.body),
+    })),
   );
 
   return (
@@ -45,15 +48,24 @@ export default async function LifePage() {
         ) : (
           <div className="divide-border flex flex-col divide-y">
             {rendered.map(({ entry, html }) => (
-              <article key={entry.slug} className="flex flex-col gap-3 py-8 first:pt-0">
+              <article
+                key={entry.slug}
+                className="flex flex-col gap-3 py-8 first:pt-0"
+              >
                 <div className="flex flex-wrap items-center gap-2">
-                  <p className="text-faint text-sm">{formatDate(entry.published)}</p>
+                  <p className="text-faint text-sm">
+                    {formatDate(entry.published)}
+                  </p>
                   <Badge>{kindLabel[entry.kind] ?? entry.kind}</Badge>
                   {entry.location ? (
-                    <span className="text-faint text-sm">· {entry.location}</span>
+                    <span className="text-faint text-sm">
+                      · {entry.location}
+                    </span>
                   ) : null}
                 </div>
-                {entry.title ? <h2 className="text-lg font-semibold">{entry.title}</h2> : null}
+                {entry.title ? (
+                  <h2 className="text-lg font-semibold">{entry.title}</h2>
+                ) : null}
                 <Prose html={html} />
               </article>
             ))}

@@ -30,13 +30,41 @@ export default function CommandPalette({
 
   const items: Item[] = useMemo(
     () => [
-      ...siteConfig.nav.map((item) => ({ label: item.label, href: item.href, group: "Go to" })),
-      ...siteConfig.secondaryNav.map((item) => ({ label: item.label, href: item.href, group: "Go to" })),
-      ...work.map((item) => ({ label: item.title, href: `/work/${item.slug}`, group: "Work" })),
-      ...notes.map((item) => ({ label: item.title, href: `/writing/${item.slug}`, group: "Writing" })),
-      ...lab.map((item) => ({ label: item.title, href: `/lab/${item.slug}`, group: "Lab" })),
-      ...ideas.map((item) => ({ label: item.title, href: `/ideas/${item.slug}`, group: "Ideas" })),
-      ...topics.map((topic) => ({ label: topic.label, href: `/topics/${topic.slug}`, group: "Topics" })),
+      ...siteConfig.nav.map((item) => ({
+        label: item.label,
+        href: item.href,
+        group: "Go to",
+      })),
+      ...siteConfig.secondaryNav.map((item) => ({
+        label: item.label,
+        href: item.href,
+        group: "Go to",
+      })),
+      ...work.map((item) => ({
+        label: item.title,
+        href: `/work/${item.slug}`,
+        group: "Work",
+      })),
+      ...notes.map((item) => ({
+        label: item.title,
+        href: `/writing/${item.slug}`,
+        group: "Writing",
+      })),
+      ...lab.map((item) => ({
+        label: item.title,
+        href: `/lab/${item.slug}`,
+        group: "Lab",
+      })),
+      ...ideas.map((item) => ({
+        label: item.title,
+        href: `/ideas/${item.slug}`,
+        group: "Ideas",
+      })),
+      ...topics.map((topic) => ({
+        label: topic.label,
+        href: `/topics/${topic.slug}`,
+        group: "Topics",
+      })),
     ],
     [work, notes, lab, ideas, topics],
   );
@@ -118,13 +146,19 @@ export default function CommandPalette({
           onKeyDown={onKeyDown}
           placeholder="Search pages, work, writing…"
           aria-label="Search"
-          aria-activedescendant={filtered[activeIndex] ? `cmdk-${activeIndex}` : undefined}
+          aria-activedescendant={
+            filtered[activeIndex] ? `cmdk-${activeIndex}` : undefined
+          }
           role="combobox"
           aria-expanded="true"
           aria-controls="cmdk-list"
           className="border-border min-h-12 w-full border-b bg-transparent px-4 text-base outline-none"
         />
-        <ul id="cmdk-list" role="listbox" className="max-h-80 overflow-y-auto py-2">
+        <ul
+          id="cmdk-list"
+          role="listbox"
+          className="max-h-80 overflow-y-auto py-2"
+        >
           {filtered.length === 0 ? (
             <li className="text-muted px-4 py-3 text-sm">No results.</li>
           ) : (
@@ -141,7 +175,9 @@ export default function CommandPalette({
                   onClick={() => go(item.href)}
                   onMouseEnter={() => setActiveIndex(index)}
                   className={`flex cursor-pointer items-center justify-between px-4 py-2.5 text-left text-sm ${
-                    index === activeIndex ? "bg-accent-soft text-accent-strong" : "text-fg"
+                    index === activeIndex
+                      ? "bg-accent-soft text-accent-strong"
+                      : "text-fg"
                   }`}
                 >
                   <span>{item.label}</span>

@@ -5,7 +5,13 @@ import Section from "@/components/ui/Section";
 // (see decision-log.md). Swap for actual logo SVGs once clients approve
 // usage; keep the "(name changed)" honesty from the case-study content in
 // sync if any of these change.
-const clients = ["Northwind", "Atlas Analytics", "Fernway", "Halcyon Labs", "Ridgeline"];
+const clients = [
+  "Northwind",
+  "Atlas Analytics",
+  "Fernway",
+  "Halcyon Labs",
+  "Ridgeline",
+];
 
 export default function TrustedBy() {
   return (

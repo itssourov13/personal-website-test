@@ -1,6 +1,6 @@
 # Vision & Mission
 
-> ✅ Approved baseline. This document is the decision filter: when in doubt, ask *"does this serve the vision?"*
+> ✅ Approved baseline. This document is the decision filter: when in doubt, ask _"does this serve the vision?"_
 
 ## 1. Vision (where this project leads)
 
@@ -8,11 +8,11 @@ A personal website that feels like a conversation with a craftsman: calm, confid
 
 Concretely, the vision has three horizons:
 
-| Horizon | Theme | What is true then |
-|---|---|---|
-| Now (v1) | **Show the craft** | A fast, beautiful home base that earns trust and starts conversations |
-| +12 months | **Compounding content** | A growing library of case studies and notes that attracts visitors via search and shares; the site is a magnet, not just a business card |
-| +3–5 years | **Own platform** | The site is the owner's primary professional asset — independent of social platforms — with optional newsletter, curated archive, and (possibly) products |
+| Horizon    | Theme                   | What is true then                                                                                                                                         |
+| ---------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Now (v1)   | **Show the craft**      | A fast, beautiful home base that earns trust and starts conversations                                                                                     |
+| +12 months | **Compounding content** | A growing library of case studies and notes that attracts visitors via search and shares; the site is a magnet, not just a business card                  |
+| +3–5 years | **Own platform**        | The site is the owner's primary professional asset — independent of social platforms — with optional newsletter, curated archive, and (possibly) products |
 
 ## 2. Mission (what the site must do every day)
 
@@ -20,7 +20,7 @@ Concretely, the vision has three horizons:
 
 ## 3. Brand promise (the visitor's takeaway)
 
-> *"This person doesn't just talk about quality — the site itself is the proof."*
+> _"This person doesn't just talk about quality — the site itself is the proof."_
 
 Every element (typography, motion, case-study depth, page speed) is evidence supporting this promise. If an element doesn't support it, cut it.
 

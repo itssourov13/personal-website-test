@@ -7,6 +7,7 @@
 **ROLE:** A senior front-end engineer with deep performance and privacy engineering focus. You are adding the site's motion system (quiet, precise — "The Printed Studio"), then hardening SEO, performance CI, security headers, and the only dynamic endpoint (contact form delivery).
 
 **READ FIRST:**
+
 1. `project-planning/README.md` §2 + `06-agents/ai-agent-instructions.md` (budgets are hard gates)
 2. `04-strategy/animation-plan.md` — **normative** §2 tokens, §3 inventory, §5 reduced-motion gating
 3. `04-strategy/performance-plan.md` §1 budgets + §3 per-layer checklist + §4 CI pipeline
@@ -18,10 +19,12 @@
 9. `05-roadmap/task-breakdown.md` P4 (P4-1…P4-8) + P5 (P5-1…P5-9)
 
 **TASK A (Phase P4 — Motion & polish).** Tasks P4-1…P4-8:
+
 - Motion tokens (animation-plan §2) as constants; `LenisProvider` — desktop + motion-safe gated only; `Reveal` + `StaggerGroup` applied to all sections (reduced-motion → static output, zero layout jump); `PageTransition` (View Transitions API first, Motion `AnimatePresence` fallback; focus → main heading; instant under reduced motion); `MetricCounter` (count-up, aria-hidden final in DOM); `ScrollProgress` (notes pages); micro-interactions: link underline, button arrows, card lift, theme crossfade, availability-pill pulse (all motion-safe); optional pointer-only: `MagneticButton` (FinalCTA only), `CursorGlow`, wordmark `Marquee`.
 - Perf re-verify after motion: budgets green; no long tasks > 200 ms; no CLS from animation; reduced-motion regression pass (animation-plan §5 checklist).
 
 **TASK B (Phase P5 — SEO, performance, security & contact delivery).** Tasks P5-1…P5-9:
+
 - Metadata API on all routes (unique title/description/OG/Twitter/canonical, `%s — Sourov Mondol` template); CI test: duplicate/missing metadata = fail.
 - OG edge route `/og/[...slug]` via `@vercel/og` (1200×630: wordmark, title, copper accent, per-page fields); verified in preview.
 - JSON-LD: `Person` (layout), `Article`/`BlogPosting`, `CreativeWork`, `FAQPage`, `BreadcrumbList`; validate with schema.org validators.
@@ -33,6 +36,7 @@
 - Field baseline: GSC property + Plausible goals + CrUX note saved into `08-operations/deployment-plan.md`/`maintenance-plan.md`.
 
 **ACCEPTANCE CRITERIA:**
+
 - Reduced-motion: with `prefers-reduced-motion: reduce` there is NO motion anywhere (grep-able: motion components check `useMedia().reduced`); with motion: budgets still green, no CLS > 0.05, no long tasks > 200 ms on mobile 4G
 - E2E suite green: hire path, trust path, form happy path + honeypot + rate-limit (blocked after 5/10 min), headers/CSP asserts, theme toggle, filters, 404, no-horizontal-scroll
 - Security: CSP as specced (no `unsafe-eval`, `frame-ancestors 'none'`, `form-action 'self'`), headers verified in prod preview; repo-wide secret grep clean; client bundle contains no key-shaped strings

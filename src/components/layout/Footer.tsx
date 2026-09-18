@@ -16,7 +16,10 @@ export default function Footer() {
             <p className="text-muted text-sm">{siteConfig.tagline}</p>
           </div>
 
-          <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2 md:max-w-md md:justify-end">
+          <nav
+            aria-label="Footer"
+            className="flex flex-wrap gap-x-6 gap-y-2 md:max-w-md md:justify-end"
+          >
             {[...siteConfig.nav, ...siteConfig.secondaryNav].map((item) => (
               <Link
                 key={item.href}
@@ -26,7 +29,10 @@ export default function Footer() {
                 {item.label}
               </Link>
             ))}
-            <Link href={siteConfig.socials.rss} className="text-muted hover:text-fg text-sm">
+            <Link
+              href={siteConfig.socials.rss}
+              className="text-muted hover:text-fg text-sm"
+            >
               RSS
             </Link>
           </nav>

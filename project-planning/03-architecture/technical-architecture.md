@@ -1,6 +1,6 @@
 # Technical Architecture
 
-> ✅ Approved baseline (D-001…D-023). Read with: `tech-stack.md` (choices) and `folder-structure.md` (layout). This doc explains *how the system fits together*.
+> ✅ Approved baseline (D-001…D-023). Read with: `tech-stack.md` (choices) and `folder-structure.md` (layout). This doc explains _how the system fits together_.
 
 ## 1. Architectural posture
 
@@ -40,13 +40,13 @@
 
 ## 3. Rendering strategy per route
 
-| Route | Strategy | Why |
-|---|---|---|
-| All content routes | **Static generation at build** (`generateStaticParams`) | Content is known at build; fastest UX, best SEO, zero runtime cost |
-| Home / static pages | Static | Same |
-| Metadata, OG images | Static + **edge OG route** (`@vercel/og` at `/og/[...slug]`) | Dynamic share cards without per-page build cost |
-| Contact POST `/api/contact` (or `app/contact/route.ts`) | Serverless function | Only dynamic surface; zod + honeypot + rate limit before Resend |
-| Search (F-24) | Staged: client-side index later | Not in v1 |
+| Route                                                   | Strategy                                                     | Why                                                                |
+| ------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------ |
+| All content routes                                      | **Static generation at build** (`generateStaticParams`)      | Content is known at build; fastest UX, best SEO, zero runtime cost |
+| Home / static pages                                     | Static                                                       | Same                                                               |
+| Metadata, OG images                                     | Static + **edge OG route** (`@vercel/og` at `/og/[...slug]`) | Dynamic share cards without per-page build cost                    |
+| Contact POST `/api/contact` (or `app/contact/route.ts`) | Serverless function                                          | Only dynamic surface; zod + honeypot + rate limit before Resend    |
+| Search (F-24)                                           | Staged: client-side index later                              | Not in v1                                                          |
 
 ISR/revalidation: not needed in v1 (content updates = deploys). If live-edit content appears (F-23 CMS), evaluate `revalidate` hooks then — architecture keeps this easy (content accessed through one data layer).
 
@@ -72,28 +72,28 @@ Rule: any new `"use client"` component must be justified in the component archit
 
 ## 6. Cross-cutting infrastructure
 
-| Concern | Approach |
-|---|---|
-| Styling | Tokens (CSS vars) → Tailwind v4 `@theme`; prose via typography plugin |
-| Typography | `next/font` (Fraunces + Inter), `display: swap`, subset, self-hosted |
-| Images | `next/image`: AVIF preferred, explicit `sizes`, `priority` only on hero/LCP, all assets in `/public` or remote with `remotePatterns` allowlist |
-| SEO/OG | Metadata API + `opengraph-image` pattern or edge route; JSON-LD injected server-side |
-| Errors | `app/error.tsx` (styled, helpful), `app/global-error.tsx`, `not-found.tsx` per route level as needed |
-| Loading | `loading.tsx` + Suspense skeleton for streaming where dynamic ever appears |
-| Headers/CSP | `next.config.ts` headers array + `vercel.json` (where appropriate); full list in security plan |
-| Monorepo | No — single app; `src/` colocation per folder-structure doc |
-| CI | GitHub Actions: pnpm install → lint → typecheck → test → build → Lighthouse CI (budget) → deploy via Vercel git integration |
+| Concern     | Approach                                                                                                                                       |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Styling     | Tokens (CSS vars) → Tailwind v4 `@theme`; prose via typography plugin                                                                          |
+| Typography  | `next/font` (Fraunces + Inter), `display: swap`, subset, self-hosted                                                                           |
+| Images      | `next/image`: AVIF preferred, explicit `sizes`, `priority` only on hero/LCP, all assets in `/public` or remote with `remotePatterns` allowlist |
+| SEO/OG      | Metadata API + `opengraph-image` pattern or edge route; JSON-LD injected server-side                                                           |
+| Errors      | `app/error.tsx` (styled, helpful), `app/global-error.tsx`, `not-found.tsx` per route level as needed                                           |
+| Loading     | `loading.tsx` + Suspense skeleton for streaming where dynamic ever appears                                                                     |
+| Headers/CSP | `next.config.ts` headers array + `vercel.json` (where appropriate); full list in security plan                                                 |
+| Monorepo    | No — single app; `src/` colocation per folder-structure doc                                                                                    |
+| CI          | GitHub Actions: pnpm install → lint → typecheck → test → build → Lighthouse CI (budget) → deploy via Vercel git integration                    |
 
 ## 7. Failure modes & resilience (design-for-failure)
 
-| Failure | Behavior |
-|---|---|
-| Resend down | Contact route returns 503 JSON; client shows email fallback with mailto; site otherwise unaffected |
-| Upstash down | Rate limiter fails-open with error logged (documented risk, acceptable for low-traffic personal site; alternative: in-memory limiter per function instance) |
-| Velite schema error | Build fails loudly at CI — never ships |
-| Font CDN failure | next/font self-hosts — no external dependency |
-| JS disabled | All pages are static; nav/form degrade to mailto; no blank states |
-| CMS/dynamic later | Revalidation hooks isolated in one content-data module |
+| Failure             | Behavior                                                                                                                                                    |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Resend down         | Contact route returns 503 JSON; client shows email fallback with mailto; site otherwise unaffected                                                          |
+| Upstash down        | Rate limiter fails-open with error logged (documented risk, acceptable for low-traffic personal site; alternative: in-memory limiter per function instance) |
+| Velite schema error | Build fails loudly at CI — never ships                                                                                                                      |
+| Font CDN failure    | next/font self-hosts — no external dependency                                                                                                               |
+| JS disabled         | All pages are static; nav/form degrade to mailto; no blank states                                                                                           |
+| CMS/dynamic later   | Revalidation hooks isolated in one content-data module                                                                                                      |
 
 ## 8. Performance architecture notes
 

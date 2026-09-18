@@ -3,6 +3,7 @@
 > ✅ Approved baseline. This is the executable checklist for agents. Convention: each line = one task with acceptance shorthand; statuses: `[ ]` open, `[x]` done, `[~]` in progress, `[d]` deferred (reason recorded in phase report). Tasks reference phases and features by ID.
 
 ## P0 — Foundation & setup
+
 - [ ] P0-1 Scaffold Next.js 15 (App Router) + TypeScript strict + pnpm (`create-next-app` flags: `--typescript --app --tailwind --eslint --src-dir --import-alias "@/*"`)
 - [ ] P0-2 Configure `tsconfig` strict extras (`noUncheckedIndexedAccess`, `verbatimModuleSyntax`), `.npmrc` (`engine-strict=true`), Node engine ≥ 20
 - [ ] P0-3 ESLint flat config (next/core-web-vitals + typescript-eslint + import sorting) + Prettier config; format all
@@ -16,6 +17,7 @@
 - **Exit:** `pnpm lint && typecheck && test && build` all green locally + CI replicates
 
 ## P1 — Core shell & design system (F-1, F-2, F-9-lite, F-10-lite)
+
 - [ ] P1-1 `globals.css`: full token inventory (colors light/dark, type scale, spacing, radius, shadows, motion) + Tailwind `@theme` mapping + base styles + grain data-URI
 - [ ] P1-2 Fonts: next/font Fraunces + Inter (subsets, display swap, variable axes opts)
 - [ ] P1-3 `lib/site.config.ts` + `SiteConfig` type (per folder-structure §3) — single source of truth
@@ -30,6 +32,7 @@
 - **Exit:** Lighthouse ≥ 90 stub; axe 0 crit; hex-grep clean; keyboard nav works (`tab` through menu/theme/404)
 
 ## P2 — Home (F-3; microcopy F-2)
+
 - [ ] P2-1 `Hero`: Display1 statement (owner copy), sub-line, dual CTA, availability pill (config-driven), hero intro motion (P4 tokens referenced, static now)
 - [ ] P2-2 `ProofBand`: 3 metrics (Fraunces numbers) + client wordmark strip (static in P2; marquee P4)
 - [ ] P2-3 `SelectedWork`: 3–4 spotlight cards from fixture/content (hover/focus media swap component wired)
@@ -41,6 +44,7 @@
 - **Exit:** D-014 mobile+desktop green on Home; ten-second clarity owner-pass; reduced-motion variant ok
 
 ## P3 — Content pages (F-4, F-5, F-6-UI, F-7)
+
 - [ ] P3-1 Velite: install + `velite.config.ts`; `WorkSchema` + `NoteSchema` (folder-structure §4) + `lib/content.ts` typed queries
 - [ ] P3-2 Templates: `content/work/_template.md`, `content/writing/_template.md`; `scripts/new-post.mjs`; `scripts/check-content.mjs` (CI wiring)
 - [ ] P3-3 Sample content: 1 fixture work + 1 fixture note (deterministic, tests); owner drafts pushed as they approve
@@ -54,6 +58,7 @@
 - **Exit:** all routes static-build with real content; axe clean; filter + schema tests green
 
 ## P4 — Motion & polish (D-004)
+
 - [ ] P4-1 Motion tokens (animation-plan §2) as constants; `LenisProvider` (desktop + motion-safe only)
 - [ ] P4-2 `Reveal` + `StaggerGroup` applied to all sections (reduced-motion static output, no layout jump)
 - [ ] P4-3 `PageTransition` (View Transitions API first, Motion fallback; focus → main heading; instant under reduced motion)
@@ -65,6 +70,7 @@
 - **Exit:** animation-plan QA checklist green; budgets green
 
 ## P5 — SEO, performance hardening & contact endpoint (F-8, F-9, F-11, F-6-complete)
+
 - [ ] P5-1 Metadata API on all routes: unique title/description/OG/Twitter/canonical; title template; CI test for duplicates/missing
 - [ ] P5-2 OG edge route `/og/[...slug]` (1200×630 template: wordmark, title, copper, per-page); verified in preview
 - [ ] P5-3 JSON-LD: `Person` (layout), `Article/BlogPosting`, `CreativeWork`, `FAQPage`, `BreadcrumbList`; validate with schema.org checker
@@ -77,6 +83,7 @@
 - **Exit:** SEO/a11y/perf gates green (CI); headers verified; form e2e green; audit clean
 
 ## P6 — Accessibility deep pass (D-015)
+
 - [ ] P6-1 Full axe sweep (all routes mobile+desktop) — 0 violations
 - [ ] P6-2 Keyboard walkthrough script (a11y plan §3) — all controls; documented results
 - [ ] P6-3 SR pass: VoiceOver + NVDA on §7 script (nav, menu, filters, form, case study, notes, 404)
@@ -86,6 +93,7 @@
 - **Exit:** a11y plan §8 matrix fully green; owner spot-verifies SR demo
 
 ## P7 — QA, launch & handoff (deployment plan)
+
 - [ ] P7-1 Full Playwright e2e suite: hire path, trust path, theme toggle, filters, form (happy/honeypot/rate-limit), 404, reduced-motion, no-h-scroll asserts
 - [ ] P7-2 Content final: all copy/images/testimonials owner-approved; placeholder sweep (`lorem|TODO|placeholder` grep = 0)
 - [ ] P7-3 Preflight: env vars in Vercel (all environments), DNS (apex+www→static), TLS, redirects 301 (www→apex if chosen), preview smoke
@@ -96,20 +104,23 @@
 - **Exit:** launch checklist 100% green; owner sign-off
 
 ## P8 — Post-launch (first cycle)
+
 - [ ] P8-1 30-day review: analytics + CWV field + search impressions; compare to G-1..G-7 targets
 - [ ] P8-2 First content update cycle (new note or case study) using `new-post.mjs` flow
 - [ ] P8-3 Maintenance cadence adopted (08-operations/maintenance-plan.md); first quarterly review scheduled
 - [ ] P8-4 Decision log phase report for launch + learnings
 
 ## Cross-cutting (every PR/phase — CI enforced)
+
 - [ ] X-1 Token-only styling (hex grep) · X-2 axe sweep on touched routes · X-3 Lighthouse budgets on touched routes
 - [ ] X-4 No new deps without decision entry · X-5 `pnpm audit` clean · X-6 No secrets in client bundle
 - [ ] X-7 Copy passes tone guide · X-8 Docs updated for any behavior change
 
 ## Test map (what must exist by phase)
-| Suite | Scope | Phase |
-|---|---|---|
-| Unit (vitest/RTL) | schema, filter, formatter, content queries, Button/Link/Accordion/Field | P3+ |
-| e2e (Playwright + axe) | hire path, trust path, form, theme, filters, 404, reduced-motion, no-h-scroll, headers/CSP | P5+ |
-| Lighthouse CI | budgets on 9 routes | P5+ |
-| Manual | keyboard, SR, zoom, visual QA (a11y plan §8) | P6 |
+
+| Suite                  | Scope                                                                                      | Phase |
+| ---------------------- | ------------------------------------------------------------------------------------------ | ----- |
+| Unit (vitest/RTL)      | schema, filter, formatter, content queries, Button/Link/Accordion/Field                    | P3+   |
+| e2e (Playwright + axe) | hire path, trust path, form, theme, filters, 404, reduced-motion, no-h-scroll, headers/CSP | P5+   |
+| Lighthouse CI          | budgets on 9 routes                                                                        | P5+   |
+| Manual                 | keyboard, SR, zoom, visual QA (a11y plan §8)                                               | P6    |

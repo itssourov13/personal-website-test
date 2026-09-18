@@ -55,7 +55,12 @@ export default function MoreMenu({ nav }: { nav: NavItem[] }) {
         className="hover:bg-surface-2 flex min-h-11 items-center gap-1 rounded-full px-4 text-sm font-medium"
       >
         More
-        <ChevronDownIcon className={cn("transition-transform duration-150", open && "rotate-180")} />
+        <ChevronDownIcon
+          className={cn(
+            "transition-transform duration-150",
+            open && "rotate-180",
+          )}
+        />
       </button>
 
       {open ? (
@@ -63,7 +68,7 @@ export default function MoreMenu({ nav }: { nav: NavItem[] }) {
           id="more-menu-panel"
           role="menu"
           aria-label="More"
-          className="border-border bg-surface absolute right-0 top-full z-50 mt-2 w-56 rounded-md border py-2 shadow-lg"
+          className="border-border bg-surface absolute top-full right-0 z-50 mt-2 w-56 rounded-md border py-2 shadow-lg"
         >
           {nav.map((item) => (
             <NavLink

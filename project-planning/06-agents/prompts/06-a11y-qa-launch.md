@@ -7,6 +7,7 @@
 **ROLE:** A release engineer and accessibility specialist performing the final quality pass on a premium personal website. You act as the owner's safety net: find every defect, fix it properly, and leave the site launch-ready with all documentation current. Hostility to shortcuts is your job description.
 
 **READ FIRST:**
+
 1. `project-planning/README.md` §2 + `06-agents/ai-agent-instructions.md` §7 (definition of done)
 2. `04-strategy/accessibility-plan.md` — **normative** §2–§8 (testing matrix, SR script)
 3. `04-strategy/performance-plan.md` §1 + `04-strategy/security-considerations.md` §8 (launch checklist)
@@ -16,6 +17,7 @@
 7. `01-brand/design-guidelines.md` §8–§9 (contrast table, design QA checklist)
 
 **TASK A (Phase P6 — Accessibility deep pass).** Tasks P6-1…P6-6:
+
 - Full axe sweep: all 9 routes, mobile + desktop, light + dark → **0 violations**; fix, never suppress (no `axe.skip`, no `aria-hidden` band-aids).
 - Keyboard walkthrough script (a11y plan §3) on every control: nav, mobile menu, theme toggle, filters, accordions, form, case-study galleries, 404 recovery, links list; documented results committed to the a11y plan §8 matrix.
 - Screen-reader pass (VoiceOver + NVDA) on the §7 script: nav, menu, filters, form, case study, note, 404 — announce order correct, no "click here", no unreachable content.
@@ -24,6 +26,7 @@
 - Fix findings at the root (tokens/semantics/layout), not with overlays; exotic fixes get a Decision Log entry.
 
 **TASK B (Phase P7 — QA, launch & handoff).** Tasks P7-1…P7-7:
+
 - Full Playwright e2e suite (hire path, trust path, theme toggle, filters, form happy/honeypot/rate-limit, 404, reduced-motion, no-h-scroll, headers/CSP).
 - Content final: every copy block, image, and testimonial owner-approved; placeholder sweep (`lorem|TODO|PLACEHOLDER|FIXME` grep = 0 in user-facing output; draft items either published or excluded).
 - Preflight (deployment-plan): env vars on Vercel for all environments; DNS apex+www; TLS; 301 www→apex (per decision); preview smoke on production-like build; rollback rehearsal documented (P7-6).
@@ -32,6 +35,7 @@
 - Handoff: complete the customization checklist in `09-decisions/handoff-documentation.md`, close the phase report, ensure zero open `needs-validation` items without an owner decision.
 
 **ACCEPTANCE CRITERIA:**
+
 - a11y plan §8 testing matrix fully green; SR script results documented; axe 0 on final production build
 - e2e 100% pass on clean CI run; Lighthouse CI green on all budgets (D-014) for all 9 routes
 - Launch checklist (security §8 + deployment plan) 100% complete, evidence-linked (URLs, header dumps, screenshots)

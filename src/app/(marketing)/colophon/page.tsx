@@ -7,7 +7,9 @@ import { siteConfig } from "@/lib/site.config";
 export const metadata: Metadata = {
   title: "Colophon",
   description: `How ${siteConfig.domain} is built.`,
-  openGraph: { images: [`/og/colophon?title=${encodeURIComponent("Colophon")}`] },
+  openGraph: {
+    images: [`/og/colophon?title=${encodeURIComponent("Colophon")}`],
+  },
 };
 
 const sections = [

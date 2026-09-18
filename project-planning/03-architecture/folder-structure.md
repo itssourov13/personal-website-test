@@ -91,31 +91,42 @@ personal-website/                      ← repository root (this workspace)
 
 ## 2. Naming & colocation rules
 
-| Concern | Rule |
-|---|---|
-| Files | `kebab-case` everywhere; components PascalCase only for component files (`Hero.tsx`, `metric-band.tsx` is wrong) |
-| One component per file | Yes; default-export the component, named-export `type Props` |
-| Colocation | Components in `components/{layer}/`; page-only logic inside `app/**/_components/` if page-private |
-| Styles | In `globals.css` + token layer; one-off component styles via Tailwind utilities in JSX (no CSS modules unless unavoidable) |
-| Data | Content in `content/`, fixtures in `data/`, config in `lib/site.config.ts` — never mixed |
-| Tests | Colocate-only when trivial (`Button.test.tsx` next to file) OR under `tests/` — pick colocation for unit, `tests/e2e` for flows (library config documented in coding-guidelines) |
+| Concern                | Rule                                                                                                                                                                             |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Files                  | `kebab-case` everywhere; components PascalCase only for component files (`Hero.tsx`, `metric-band.tsx` is wrong)                                                                 |
+| One component per file | Yes; default-export the component, named-export `type Props`                                                                                                                     |
+| Colocation             | Components in `components/{layer}/`; page-only logic inside `app/**/_components/` if page-private                                                                                |
+| Styles                 | In `globals.css` + token layer; one-off component styles via Tailwind utilities in JSX (no CSS modules unless unavoidable)                                                       |
+| Data                   | Content in `content/`, fixtures in `data/`, config in `lib/site.config.ts` — never mixed                                                                                         |
+| Tests                  | Colocate-only when trivial (`Button.test.tsx` next to file) OR under `tests/` — pick colocation for unit, `tests/e2e` for flows (library config documented in coding-guidelines) |
 
 ## 3. The single source of truth — `site.config.ts` (shape sketch)
 
 ```ts
 export const siteConfig = {
-  name: "Sourov Mondol",                 // A-001 replacement
-  domain: "sourovmondol.studio",         // A-002 replacement
+  name: "Sourov Mondol", // A-001 replacement
+  domain: "sourovmondol.studio", // A-002 replacement
   tagline: "Independent product designer & engineer.",
-  description: "…",                    // feeds metadata + JSON-LD
+  description: "…", // feeds metadata + JSON-LD
   email: "hello@sourovmondol.studio",
-  availability: { status: "booking", label: "Booking Q4 2026", href: "/contact" },
-  nav: [{ label: "Work", href: "/work" }, /* … */],
-  socials: { github: "…", linkedin: "…", x: "…", dribbble: "…", rss: "/rss.xml" },
+  availability: {
+    status: "booking",
+    label: "Booking Q4 2026",
+    href: "/contact",
+  },
+  nav: [{ label: "Work", href: "/work" } /* … */],
+  socials: {
+    github: "…",
+    linkedin: "…",
+    x: "…",
+    dribbble: "…",
+    rss: "/rss.xml",
+  },
   metrics: [{ value: 12, suffix: "", label: "years shipping products" }],
-  excludes: ["resume.pdf"],            // robots/ crawl exclusions
+  excludes: ["resume.pdf"], // robots/ crawl exclusions
 } as const satisfies SiteConfig;
 ```
+
 All nav, meta, JSON-LD, sitemap, RSS, footer consume this object. See `prompts/02-…` for the full type contract.
 
 ## 4. Content file contract (frontmatter)
@@ -148,4 +159,4 @@ The §1 tree is the frozen D-024 baseline and, like `routing-and-pages.md` §1, 
 - **Data fixtures** beyond `data/testimonials.ts`: `data/talks.ts`, `data/bookmarks.ts`, `data/photos.ts` — all three ship empty/near-empty by design (D-036/D-037/D-038).
 - **Routes** beyond Home/Work/Writing/About/Services/Contact: see `routing-and-pages.md` §5 for the full list and which decision introduced each.
 - **`lib/content.ts` is a hand-rolled frontmatter loader (gray-matter + fs), not Velite** — D-030 deviation, still in effect. References to "Velite" above (§4) describe the originally-planned mechanism; the zod schemas and content contract they validate are unchanged.
-- **`components/command/`** (CommandPalette, ⌘K) and a `ChevronDownIcon` in `components/icons/` and a `MoreMenu` in `components/layout/` aren't in the §1 sketch either — the icon/component folders are correctly described at the *layer* level (`ui/`, `layout/`, `icons/`, etc.), just not exhaustively enumerated.
+- **`components/command/`** (CommandPalette, ⌘K) and a `ChevronDownIcon` in `components/icons/` and a `MoreMenu` in `components/layout/` aren't in the §1 sketch either — the icon/component folders are correctly described at the _layer_ level (`ui/`, `layout/`, `icons/`, etc.), just not exhaustively enumerated.

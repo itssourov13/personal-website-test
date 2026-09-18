@@ -10,6 +10,10 @@ import { cn } from "@/lib/utils";
  * leaving an empty/broken box. This is a client component specifically so
  * the onError handler can work — the parent (a server component card grid)
  * stays server-rendered.
+ *
+ * The raw <img> below is deliberate: next/image can't express an onError
+ * fallback, and the sources are local, hand-rolled SVGs that gain nothing
+ * from the optimizer.
  */
 export default function CoverImage({
   src,
@@ -35,7 +39,13 @@ export default function CoverImage({
           className,
         )}
       >
-        <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" className="text-accent-strong opacity-60">
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          aria-hidden="true"
+          className="text-accent-strong opacity-60"
+        >
           <circle cx="16" cy="16" r="10" fill="currentColor" />
         </svg>
       </div>
@@ -43,6 +53,7 @@ export default function CoverImage({
   }
 
   return (
+    // eslint-disable-next-line @next/next/no-img-element -- see note above
     <img
       src={src}
       alt={alt}

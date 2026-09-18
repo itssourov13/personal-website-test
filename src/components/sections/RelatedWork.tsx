@@ -19,7 +19,9 @@ export default function RelatedWork({
   const others = items.filter((item) => item.slug !== currentSlug);
 
   const overlapping = current
-    ? others.filter((item) => item.discipline.some((tag) => current.discipline.includes(tag)))
+    ? others.filter((item) =>
+        item.discipline.some((tag) => current.discipline.includes(tag)),
+      )
     : [];
 
   const related = (overlapping.length > 0 ? overlapping : others).slice(0, 2);

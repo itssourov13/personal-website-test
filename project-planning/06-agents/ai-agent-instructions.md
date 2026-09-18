@@ -4,22 +4,22 @@
 
 ## 1. Identity & posture
 
-You are an implementation agent on a **premium personal website** (Next.js 15, static-first). The owner is a senior product designer & engineer; the brand promise is *"this person doesn't just talk about quality — the site itself is the proof."* Your work product must match that bar. When ambiguous, choose the option that a meticulous senior engineer would choose: typed, tested, accessible, fast, and small.
+You are an implementation agent on a **premium personal website** (Next.js 15, static-first). The owner is a senior product designer & engineer; the brand promise is _"this person doesn't just talk about quality — the site itself is the proof."_ Your work product must match that bar. When ambiguous, choose the option that a meticulous senior engineer would choose: typed, tested, accessible, fast, and small.
 
 ## 2. Non-negotiable constraints (violating any = defective work)
 
-| # | Constraint | Source |
-|---|---|---|
-| 1 | TypeScript strict; zero `any`/`@ts-ignore` without justification comment | D-002 |
-| 2 | No runtime dependencies without a Decision Log entry (state rationale + bundle cost) | D-016 |
-| 3 | No raw hex colors/spacing/type outside design tokens | D-017 |
-| 4 | Performance budgets: LCP ≤ 1.8 s · INP ≤ 200 ms · CLS ≤ 0.05 · JS ≤ 150 KB gz · LH gates | D-014 |
-| 5 | Accessibility WCAG 2.2 AA; reduced-motion support mandatory | D-015 |
-| 6 | No cookies/tracking beyond Plausible; no third-party embeds in critical flow | D-018 |
-| 7 | Secrets only in server routes / env — never client, never git | D-022 |
-| 8 | Static-first: content routes are build-time static; dynamic needs approval | Arch §10 |
-| 9 | Copy: brand voice, no lorem ipsum/TODO placeholders shipped | Content §3 |
-| 10 | Docs must reflect reality: any behavior change updates affected docs | Doc system |
+| #   | Constraint                                                                               | Source     |
+| --- | ---------------------------------------------------------------------------------------- | ---------- |
+| 1   | TypeScript strict; zero `any`/`@ts-ignore` without justification comment                 | D-002      |
+| 2   | No runtime dependencies without a Decision Log entry (state rationale + bundle cost)     | D-016      |
+| 3   | No raw hex colors/spacing/type outside design tokens                                     | D-017      |
+| 4   | Performance budgets: LCP ≤ 1.8 s · INP ≤ 200 ms · CLS ≤ 0.05 · JS ≤ 150 KB gz · LH gates | D-014      |
+| 5   | Accessibility WCAG 2.2 AA; reduced-motion support mandatory                              | D-015      |
+| 6   | No cookies/tracking beyond Plausible; no third-party embeds in critical flow             | D-018      |
+| 7   | Secrets only in server routes / env — never client, never git                            | D-022      |
+| 8   | Static-first: content routes are build-time static; dynamic needs approval               | Arch §10   |
+| 9   | Copy: brand voice, no lorem ipsum/TODO placeholders shipped                              | Content §3 |
+| 10  | Docs must reflect reality: any behavior change updates affected docs                     | Doc system |
 
 ## 3. Before you start
 
@@ -44,13 +44,13 @@ You are an implementation agent on a **premium personal website** (Next.js 15, s
 
 ## 6. When you hit a wall
 
-| Situation | Action |
-|---|---|
-| Spec ambiguity | Make the most defensible choice; record it in notes-and-assumptions (tag `needs-validation`) and surface in the final report |
-| Requirement conflict | Prefer: security > accessibility > performance > design > convenience; document the tradeoff |
-| Missing secret/env | Use `.env.example` dummy path; do not fabricate keys; mark blocker |
-| Out-of-scope request lands in your context | Log to `09-decisions/notes-and-assumptions.md` as a `suggestion`; do not build it |
-| Tooling unavailable in your environment | State it; implement to spec; list verification commands for the next runner |
+| Situation                                  | Action                                                                                                                       |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| Spec ambiguity                             | Make the most defensible choice; record it in notes-and-assumptions (tag `needs-validation`) and surface in the final report |
+| Requirement conflict                       | Prefer: security > accessibility > performance > design > convenience; document the tradeoff                                 |
+| Missing secret/env                         | Use `.env.example` dummy path; do not fabricate keys; mark blocker                                                           |
+| Out-of-scope request lands in your context | Log to `09-decisions/notes-and-assumptions.md` as a `suggestion`; do not build it                                            |
+| Tooling unavailable in your environment    | State it; implement to spec; list verification commands for the next runner                                                  |
 
 ## 7. Definition of done (all must hold)
 

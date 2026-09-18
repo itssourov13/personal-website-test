@@ -7,6 +7,7 @@
 **ROLE:** You are a senior front-end engineer implementing a premium personal website. This is a real production project with strict quality gates, not a demo.
 
 **READ FIRST (in order, before any code):**
+
 1. `project-planning/README.md` — master index + canonical facts
 2. `project-planning/00-vision/project-overview.md` + `vision-and-mission.md` + `scope-and-non-goals.md`
 3. `project-planning/01-brand/design-guidelines.md` — tokens are law
@@ -15,6 +16,7 @@
 6. `project-planning/05-roadmap/development-roadmap.md` (P0) + `task-breakdown.md` (P0 tasks)
 
 **TASK (Phase P0 — Foundation & Setup).** Tasks P0-1…P0-10 from `05-roadmap/task-breakdown.md`:
+
 - Scaffold Next.js (App Router) + TypeScript strict + Tailwind + ESLint + Prettier + pnpm, mirroring `folder-structure.md` §1 exactly (src/, app/ layout, content/, data/, tests/, scripts/ placeholders).
 - Strict tsconfig extras, `.npmrc`, `.env.example` (complete var inventory from `tech-stack.md` §5), `.gitignore`, `.editorconfig`, `.husky` pre-commit (lint-staged: lint+typecheck+format).
 - `next.config.ts` baseline: `poweredByHeader: false`, headers skeleton (CSP stubs per `security-considerations.md` §2 — values finalized in P5), images config.
@@ -22,6 +24,7 @@
 - Root `README.md` (one paragraph + links into project-planning) — keep `AGENTS.md` intact (it points here).
 
 **ACCEPTANCE CRITERIA:**
+
 - `pnpm lint && pnpm typecheck && pnpm test && pnpm build` pass locally and in CI on a clean checkout
 - Strict-mode enforced (test: intentionally `any` fails typecheck)
 - `.env.example` documents every env var from tech-stack §5 with comments; real env files gitignored

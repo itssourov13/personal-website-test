@@ -14,7 +14,8 @@ const hasRealEntries = entries.some((entry) => !entry.demo);
 
 export const metadata: Metadata = {
   title: "Lab",
-  description: "Experiments, prototypes, and research — separate from client work.",
+  description:
+    "Experiments, prototypes, and research — separate from client work.",
   openGraph: { images: [`/og/lab?title=${encodeURIComponent("Lab")}`] },
   // Thin/demo-only section: don't index until there's real content to show.
   robots: !hasRealEntries ? { index: false, follow: true } : undefined,
@@ -42,16 +43,30 @@ export default function LabPage() {
             title="This section is being built."
             description="Nothing real to show yet — real experiments and research will land here as they're actually finished, not before."
           >
-            <Link href="/writing" className="text-accent-strong text-sm font-medium hover:underline">
+            <Link
+              href="/writing"
+              className="text-accent-strong text-sm font-medium hover:underline"
+            >
               Read the writing instead →
             </Link>
           </EmptyState>
         ) : (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {entries.map((entry) => (
-              <Link key={entry.slug} href={`/lab/${entry.slug}`} className="group block h-full">
-                <Card padded={false} className="flex h-full flex-col overflow-hidden transition-colors group-hover:border-accent">
-                  <CoverImage src={entry.cover} alt="" className="aspect-[3/2] w-full object-cover" />
+              <Link
+                key={entry.slug}
+                href={`/lab/${entry.slug}`}
+                className="group block h-full"
+              >
+                <Card
+                  padded={false}
+                  className="group-hover:border-accent flex h-full flex-col overflow-hidden transition-colors"
+                >
+                  <CoverImage
+                    src={entry.cover}
+                    alt=""
+                    className="aspect-[3/2] w-full object-cover"
+                  />
                   <div className="flex flex-1 flex-col gap-3 p-6 md:p-8">
                     <div className="flex items-center gap-2">
                       {entry.demo ? <Badge>Sample</Badge> : null}

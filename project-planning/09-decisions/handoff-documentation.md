@@ -12,54 +12,58 @@
 ## 2. Handoff protocol
 
 ### 2.1 Owner → new AI agent (start a session)
+
 1. Open the repo root; read `AGENTS.md` (one page); follow it to `project-planning/README.md`.
 2. Read the mandatory reading order (README §2), then the applicable `06-agents/prompts/0X-*.md` for the next phase.
 3. Check task statuses (task-breakdown) + decision log + notes before writing code.
 4. Run the repo gates; add a short session-start summary to the shared note if collaborating.
 
 ### 2.2 Agent → owner (end a session / finish a phase)
+
 1. Work summary (< 15 lines): what shipped, evidence (commands + results), open items, suggested next task.
 2. Updated task statuses + phase report (decision-log §4).
 3. Any behavior change logged (decision/notes).
 4. Owner decisions requested in a numbered, actionable list (nothing buried).
 
 ### 2.3 Agent → agent (mid-project swap)
+
 - The incoming agent starts from the same §2.1 protocol; the outgoing agent leaves the phase report + updated task breakdown as the handoff artifact. **Never** rely on chat history — the repo is the memory.
 
 ## 3. Customization checklist (prerequisite before launch)
 
 Tracked in `09-decisions/notes-and-assumptions.md` by ID; mark ✅ here as completed.
 
-| # | Item | Where | Owner action |
-|---|------|-------|--------------|
-| 1 | Real name/role/persona (A-001) | `lib/site.config.ts`, all copy, JSON-LD | ✅/⬜ |
-| 2 | Domain registered + configured (A-002) | `site.config.ts` domain, Vercel domains, DNS, deployment-plan §4 | ✅/⬜ |
-| 3 | Jurisdiction confirmed (A-003) → legal pages decision (D-027) | security plan §6, launch checklist | ✅/⬜ |
-| 4 | Case study content: 2–4 approved (A-004) | `content/work/*.mdx` | ✅/⬜ |
-| 5 | Notes: 1–3 approved (A-005) | `content/writing/*.mdx` | ✅/⬜ |
-| 6 | Personal detail for About (A-006) | `/about` page section | ✅/⬜ |
-| 7 | Final copy pass (A-007) — no draft flags left in user-facing output | site-wide grep `draft:` | ✅/⬜ |
-| 8 | Contact details: email, response promise, availability pill copy | `site.config.ts` + `/contact` | ✅/⬜ |
-| 9 | Social profile URLs + resume (optional F-31) | `site.config.ts` socials | ✅/⬜ |
-| 10 | Real metrics for ProofBand + case studies (N-2) | config + MDX frontmatter | ✅/⬜ |
-| 11 | Testimonials (2–3) or explicit removal (N-3) | `data/testimonials.ts` | ✅/⬜ |
-| 12 | OG/favicon art assets (wordmark mark for OG template) | OG template + `public/` | ✅/⬜ |
+| #   | Item                                                                | Where                                                            | Owner action |
+| --- | ------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------ |
+| 1   | Real name/role/persona (A-001)                                      | `lib/site.config.ts`, all copy, JSON-LD                          | ✅/⬜        |
+| 2   | Domain registered + configured (A-002)                              | `site.config.ts` domain, Vercel domains, DNS, deployment-plan §4 | ✅/⬜        |
+| 3   | Jurisdiction confirmed (A-003) → legal pages decision (D-027)       | security plan §6, launch checklist                               | ✅/⬜        |
+| 4   | Case study content: 2–4 approved (A-004)                            | `content/work/*.mdx`                                             | ✅/⬜        |
+| 5   | Notes: 1–3 approved (A-005)                                         | `content/writing/*.mdx`                                          | ✅/⬜        |
+| 6   | Personal detail for About (A-006)                                   | `/about` page section                                            | ✅/⬜        |
+| 7   | Final copy pass (A-007) — no draft flags left in user-facing output | site-wide grep `draft:`                                          | ✅/⬜        |
+| 8   | Contact details: email, response promise, availability pill copy    | `site.config.ts` + `/contact`                                    | ✅/⬜        |
+| 9   | Social profile URLs + resume (optional F-31)                        | `site.config.ts` socials                                         | ✅/⬜        |
+| 10  | Real metrics for ProofBand + case studies (N-2)                     | config + MDX frontmatter                                         | ✅/⬜        |
+| 11  | Testimonials (2–3) or explicit removal (N-3)                        | `data/testimonials.ts`                                           | ✅/⬜        |
+| 12  | OG/favicon art assets (wordmark mark for OG template)               | OG template + `public/`                                          | ✅/⬜        |
 
 ## 4. Accounts & services setup (owner + agent; see deployment-plan §3)
 
-| Service | Purpose | Who creates | Notes |
-|---|---|---|---|
-| GitHub repo | Source of truth | Owner | Protected `main`, CI, secret scan |
-| Vercel project | Deploy | Owner | Env vars per environment |
-| Resend | Email delivery | Owner | `RESEND_API_KEY` + sending domain |
-| Upstash (or Vercel KV) | Rate limiting | Owner | `UPSTASH_*` env vars |
-| Plausible | Analytics | Owner | `NEXT_PUBLIC_ANALYTICS_DOMAIN` + goals |
-| Google Search Console | SEO | Owner | Property verify (P5-9) |
+| Service                | Purpose         | Who creates | Notes                                  |
+| ---------------------- | --------------- | ----------- | -------------------------------------- |
+| GitHub repo            | Source of truth | Owner       | Protected `main`, CI, secret scan      |
+| Vercel project         | Deploy          | Owner       | Env vars per environment               |
+| Resend                 | Email delivery  | Owner       | `RESEND_API_KEY` + sending domain      |
+| Upstash (or Vercel KV) | Rate limiting   | Owner       | `UPSTASH_*` env vars                   |
+| Plausible              | Analytics       | Owner       | `NEXT_PUBLIC_ANALYTICS_DOMAIN` + goals |
+| Google Search Console  | SEO             | Owner       | Property verify (P5-9)                 |
 
 ## 5. Phase report template (used at each phase exit)
 
 ```md
 ## Phase report — P{n}
+
 - Date: YYYY-MM-DD
 - Status: completed | cut-short (reason)
 - Shipped: <bullets, with file paths>

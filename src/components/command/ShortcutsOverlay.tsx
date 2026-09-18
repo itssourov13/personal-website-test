@@ -50,7 +50,10 @@ export default function ShortcutsOverlay() {
         <h2 className="mb-4 text-lg font-semibold">Keyboard shortcuts</h2>
         <dl className="flex flex-col gap-3">
           {shortcuts.map((shortcut) => (
-            <div key={shortcut.keys} className="flex items-center justify-between gap-4">
+            <div
+              key={shortcut.keys}
+              className="flex items-center justify-between gap-4"
+            >
               <dt className="text-muted text-sm">{shortcut.description}</dt>
               <dd>
                 <kbd className="border-border bg-surface-2 rounded border px-2 py-1 text-xs">

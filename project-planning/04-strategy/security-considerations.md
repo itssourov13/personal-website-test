@@ -4,15 +4,15 @@
 
 ## 1. Threat model (v1)
 
-| Threat | Likelihood | Impact | Primary controls |
-|---|---|---|---|
-| Contact-form spam/abuse (bots, floods) | High | Medium (inbox noise, rate costs) | Honeypot, time-trap, rate limit, validation |
-| Supply chain (malicious/compromised dependency) | Medium | High | pnpm lockfile, audit gate, Renovate, `onlyBuiltDependencies` review |
-| Secret leakage (API keys in client/repo) | Low | High | Server-only env rule, `.env.example` only, CI secret scan |
-| Hosting/infra compromise | Low (Vercel-managed) | High | Managed platform, least-privilege tokens, org 2FA, minimal custom code |
-| Content injection (MDX/XSS via content) | Low | Medium | Raw HTML disabled in MDX, server-side rendering, CSP |
-| DDoS | Low for personal site | Low-Med | Vercel edge + optional Cloudflare shield if ever needed |
-| Phishing via lookalike domain | Low | Reputation | Register close domains; DMARC on mail domain |
+| Threat                                          | Likelihood            | Impact                           | Primary controls                                                       |
+| ----------------------------------------------- | --------------------- | -------------------------------- | ---------------------------------------------------------------------- |
+| Contact-form spam/abuse (bots, floods)          | High                  | Medium (inbox noise, rate costs) | Honeypot, time-trap, rate limit, validation                            |
+| Supply chain (malicious/compromised dependency) | Medium                | High                             | pnpm lockfile, audit gate, Renovate, `onlyBuiltDependencies` review    |
+| Secret leakage (API keys in client/repo)        | Low                   | High                             | Server-only env rule, `.env.example` only, CI secret scan              |
+| Hosting/infra compromise                        | Low (Vercel-managed)  | High                             | Managed platform, least-privilege tokens, org 2FA, minimal custom code |
+| Content injection (MDX/XSS via content)         | Low                   | Medium                           | Raw HTML disabled in MDX, server-side rendering, CSP                   |
+| DDoS                                            | Low for personal site | Low-Med                          | Vercel edge + optional Cloudflare shield if ever needed                |
+| Phishing via lookalike domain                   | Low                   | Reputation                       | Register close domains; DMARC on mail domain                           |
 
 Explicitly **out of scope** for v1 risk register: auth systems, payments, PII databases, admin panels (none exist). If CMS/booking/paid content arrive (F-23/F-21/F-26), update this register in the same change.
 

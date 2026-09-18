@@ -2,7 +2,7 @@
 
 > **Read this first. Everything an agent needs to know starts here.**
 
-You are working in the repository of a **premium personal website** (portfolio + writing + consulting conversion). The website code is not built yet — the repository currently contains the complete project planning package plus this pointer.
+You are working in the repository of a **premium personal website** (portfolio + writing + consulting conversion). The site is built (see `README.md` → Status) — routes, MDX content collections, design system, motion, contact API, SEO, and test suites are in place — and this repository also contains the complete project planning package this pointer builds on.
 
 ## 1. Start here (mandatory)
 
@@ -27,4 +27,4 @@ You are working in the repository of a **premium personal website** (portfolio +
 - Out-of-scope requests go to `project-planning/09-decisions/notes-and-assumptions.md` as `suggestion` — never built silently.
 - Final owner message: What (built) · Evidence (commands + results) · Open items / decisions needed · Next task suggestion.
 
-*The human is the owner and final editor of all copy and strategic decisions. When in doubt, ask — but keep moving through unblocked work first.*
+_The human is the owner and final editor of all copy and strategic decisions. When in doubt, ask — but keep moving through unblocked work first._

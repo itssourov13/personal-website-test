@@ -39,7 +39,10 @@ export default function Header() {
             <Badge tone="accent">{siteConfig.availability.label}</Badge>
           </Link>
           <ThemeToggle />
-          <MobileNav primary={siteConfig.nav} secondary={siteConfig.secondaryNav} />
+          <MobileNav
+            primary={siteConfig.nav}
+            secondary={siteConfig.secondaryNav}
+          />
         </div>
       </div>
     </header>

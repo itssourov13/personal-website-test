@@ -12,7 +12,9 @@ const hasRealBookmarks = bookmarks.some((b) => !b.demo);
 export const metadata: Metadata = {
   title: "Bookmarks",
   description: "A curated, personally-annotated set of links.",
-  openGraph: { images: [`/og/bookmarks?title=${encodeURIComponent("Bookmarks")}`] },
+  openGraph: {
+    images: [`/og/bookmarks?title=${encodeURIComponent("Bookmarks")}`],
+  },
   robots: !hasRealBookmarks ? { index: false, follow: true } : undefined,
 };
 
@@ -29,9 +31,8 @@ export default function BookmarksPage() {
       {!hasRealBookmarks && bookmarks.length > 0 ? (
         <Section className="pt-0 pb-0">
           <p className="text-muted border-accent-soft bg-accent-soft/40 rounded-md border px-4 py-3 text-sm">
-            This library is still mostly empty — the entries below are
-            sample bookmarks standing in for real curation while it&apos;s built
-            out.
+            This library is still mostly empty — the entries below are sample
+            bookmarks standing in for real curation while it&apos;s built out.
           </p>
         </Section>
       ) : null}
@@ -62,7 +63,9 @@ export default function BookmarksPage() {
                           </a>
                           {bookmark.demo ? <Badge>Sample</Badge> : null}
                         </div>
-                        <p className="text-muted text-sm">{bookmark.description}</p>
+                        <p className="text-muted text-sm">
+                          {bookmark.description}
+                        </p>
                         <p className="text-faint text-xs">
                           Added {formatDate(bookmark.dateAdded)}
                         </p>

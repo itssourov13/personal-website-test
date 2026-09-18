@@ -9,32 +9,34 @@ CSS variables (single source)  →  Tailwind @theme utility mapping  →  compon
 :root { --bg: … }                   bg-bg, text-fg, border-border,     <Button className="…"/>
 .dark { --bg: … }                   accent-*, surface-*, muted, …
 ```
+
 Convention: token class names = `bg-bg`, `text-fg`, `bg-surface`, `border-border`, `text-muted`, `bg-accent`, `ring-accent`, `text-faint`. Never hard-code a hex in a component.
 
 ## 2. Color system
 
 ### 2.1 Palette (warm neutrals + one accent)
 
-| Token | Light | Dark | Usage |
-|---|---|---|---|
-| `--bg` | `#F7F5F1` | `#141312` | Page background (warm paper) |
-| `--surface` | `#FFFFFF` | `#1C1B19` | Cards, header, elevated panels |
-| `--surface-2` | `#EFECE6` | `#24221F` | Hover fills, wells, code blocks |
-| `--fg` | `#191714` | `#F2EFEA` | Primary text (warm ink / cream) |
-| `--muted` | `#6B675F` | `#A29D94` | Secondary text |
-| `--faint` | `#9B978E` | `#6E6A62` | Captions, meta, placeholders |
-| `--border` | `rgba(25,23,20,.10)` | `rgba(242,239,234,.12)` | Hairlines, card borders, dividers |
-| `--accent` | `#B45F3E` | `#D8906B` | Links, focus, key numbers, dot mark |
-| `--accent-strong` | `#9C4A2C` | `#E8A67E` | Accent where AA contrast required on bg |
-| `--accent-soft` | `#EDDCD2` | `#3A2A22` | Accent tints, pills, selection bg |
-| `--accent-grad-from` | `#B45F3E` | `#D8906B` | Gradient start (metric bands, hero motif) |
-| `--accent-grad-to` | `#D9A441` | `#E7BC6D` | Gradient end (copper→gold) |
-| `--focus-ring` | `#9C4A2C` | `#E8A67E` | `:focus-visible` ring (2 px + 2 px offset) |
-| `--selection` | `rgba(180,95,62,.20)` | `rgba(216,144,107,.30)` | Text selection |
-| `--success` | `#2F7D4F` | `#5FB27B` | Form success only |
-| `--danger` | `#B03A2E` | `#E2766A` | Form errors only |
+| Token                | Light                 | Dark                    | Usage                                      |
+| -------------------- | --------------------- | ----------------------- | ------------------------------------------ |
+| `--bg`               | `#F7F5F1`             | `#141312`               | Page background (warm paper)               |
+| `--surface`          | `#FFFFFF`             | `#1C1B19`               | Cards, header, elevated panels             |
+| `--surface-2`        | `#EFECE6`             | `#24221F`               | Hover fills, wells, code blocks            |
+| `--fg`               | `#191714`             | `#F2EFEA`               | Primary text (warm ink / cream)            |
+| `--muted`            | `#6B675F`             | `#A29D94`               | Secondary text                             |
+| `--faint`            | `#9B978E`             | `#6E6A62`               | Captions, meta, placeholders               |
+| `--border`           | `rgba(25,23,20,.10)`  | `rgba(242,239,234,.12)` | Hairlines, card borders, dividers          |
+| `--accent`           | `#B45F3E`             | `#D8906B`               | Links, focus, key numbers, dot mark        |
+| `--accent-strong`    | `#9C4A2C`             | `#E8A67E`               | Accent where AA contrast required on bg    |
+| `--accent-soft`      | `#EDDCD2`             | `#3A2A22`               | Accent tints, pills, selection bg          |
+| `--accent-grad-from` | `#B45F3E`             | `#D8906B`               | Gradient start (metric bands, hero motif)  |
+| `--accent-grad-to`   | `#D9A441`             | `#E7BC6D`               | Gradient end (copper→gold)                 |
+| `--focus-ring`       | `#9C4A2C`             | `#E8A67E`               | `:focus-visible` ring (2 px + 2 px offset) |
+| `--selection`        | `rgba(180,95,62,.20)` | `rgba(216,144,107,.30)` | Text selection                             |
+| `--success`          | `#2F7D4F`             | `#5FB27B`               | Form success only                          |
+| `--danger`           | `#B03A2E`             | `#E2766A`               | Form errors only                           |
 
 **Contrast QA (WCAG 2.2 AA):**
+
 - `--fg` on `--bg`: light 14.2:1 · dark 13.9:1 ✅
 - `--muted` on `--bg`: light 4.8:1 · dark 5.6:1 ✅ (body-size ok; keep captions ≥ `--faint` only for non-essential)
 - `--accent` on `--bg` for link text: light 4.4:1 ✅ · dark `#D8906B` on `#141312`: 6.3:1 ✅
@@ -42,6 +44,7 @@ Convention: token class names = `bg-bg`, `text-fg`, `bg-surface`, `border-border
 - Large display text may use `--accent` (decorative/focal); body text never below 4.5:1
 
 ### 2.2 Rules
+
 - Neutrals always warm-tinted; never pure `#808080` or blue-gray.
 - Accent usage budget: ≤ 10% of any viewport (links, focus, key numbers, pills). Accent ≠ decoration everywhere.
 - Dark mode is a first-class re-design (approved mapping above), not an invert filter.
@@ -49,23 +52,23 @@ Convention: token class names = `bg-bg`, `text-fg`, `bg-surface`, `border-border
 
 ## 3. Typography
 
-| Role | Font | Sizing (clamp where fluid) | Weight / tracking / lh |
-|---|---|---|---|
-| Display 1 (hero statement) | Fraunces | `clamp(2.75rem, 1rem + 5.5vw, 4.75rem)` | 460 · `-0.02em` · 1.05 |
-| Display 2 (page titles) | Fraunces | `clamp(2.25rem, 1rem + 3.5vw, 3.5rem)` | 460 · `-0.015em` · 1.08 |
-| H1 | Fraunces | `clamp(2rem, 1rem + 2.5vw, 2.75rem)` | 520 · `-0.01em` · 1.1 |
-| H2 (section) | Fraunces | `clamp(1.75rem, 1rem + 2vw, 2.25rem)` | 520 · `-0.01em` · 1.15 |
-| H3 (card title) | Inter | `1.375rem` | 600 · `-0.01em` · 1.25 |
-| H4 | Inter | `1.125rem` | 600 · 0 · 1.3 |
-| Body / body-lg | Inter | `1rem / 1.125rem` | 400 · 0 · 1.65 |
-| Small / caption | Inter | `0.875rem / 0.8125rem` | 400 · 0 · 1.5 |
-| Overline (eyebrow) | Inter | `0.75rem` | 600 · `0.08em` · 1.3 · UPPERCASE |
-| Monospace (code/meta) | `ui-monospace` stack | `0.875rem` | — · 0 · 1.6 |
+| Role                       | Font                 | Sizing (clamp where fluid)              | Weight / tracking / lh           |
+| -------------------------- | -------------------- | --------------------------------------- | -------------------------------- |
+| Display 1 (hero statement) | Fraunces             | `clamp(2.75rem, 1rem + 5.5vw, 4.75rem)` | 460 · `-0.02em` · 1.05           |
+| Display 2 (page titles)    | Fraunces             | `clamp(2.25rem, 1rem + 3.5vw, 3.5rem)`  | 460 · `-0.015em` · 1.08          |
+| H1                         | Fraunces             | `clamp(2rem, 1rem + 2.5vw, 2.75rem)`    | 520 · `-0.01em` · 1.1            |
+| H2 (section)               | Fraunces             | `clamp(1.75rem, 1rem + 2vw, 2.25rem)`   | 520 · `-0.01em` · 1.15           |
+| H3 (card title)            | Inter                | `1.375rem`                              | 600 · `-0.01em` · 1.25           |
+| H4                         | Inter                | `1.125rem`                              | 600 · 0 · 1.3                    |
+| Body / body-lg             | Inter                | `1rem / 1.125rem`                       | 400 · 0 · 1.65                   |
+| Small / caption            | Inter                | `0.875rem / 0.8125rem`                  | 400 · 0 · 1.5                    |
+| Overline (eyebrow)         | Inter                | `0.75rem`                               | 600 · `0.08em` · 1.3 · UPPERCASE |
+| Monospace (code/meta)      | `ui-monospace` stack | `0.875rem`                              | — · 0 · 1.6                      |
 
 - Fonts: **Fraunces** (variable, set `opsz` high for display) + **Inter** (variable, 400/500/600). Loaded via `next/font` (self-hosted, subset, `display: swap`) — D-021.
 - Prose measure: 60–75 chars (max-width 760 px) for notes/case-study body. Headings above 1rem use Fraunces by default; numerals in metrics bands use Fraunces 520 (open numbers — they're the "big ticket" typography).
 - Line length rule for lists/cards ≤ 40 chars per visual line where possible.
-- Emphasis: *italic* Fraunces for words, never fake-bold. No ALL CAPS except overline labels.
+- Emphasis: _italic_ Fraunces for words, never fake-bold. No ALL CAPS except overline labels.
 - Type scale is fixed; fluid only on display/h1/h2 via the clamp values above.
 
 ## 4. Spacing & layout
@@ -79,14 +82,14 @@ Convention: token class names = `bg-bg`, `text-fg`, `bg-surface`, `border-border
 
 ## 5. Radius, elevation, effects tokens
 
-| Token | Value | Use |
-|---|---|---|
-| `--radius-xs` | 4 px | chips, pills, thumbnails |
-| `--radius-sm` | 6 px | inputs, code blocks |
-| `--radius-md` | 8 px | cards, modals |
-| `--radius-lg` | 12 px | hero media, large panels |
-| `--radius-full` | 9999 px | buttons, toggle |
-| `--shadow-*` | above | layered elevation, 1 level max per surface |
+| Token           | Value   | Use                                        |
+| --------------- | ------- | ------------------------------------------ |
+| `--radius-xs`   | 4 px    | chips, pills, thumbnails                   |
+| `--radius-sm`   | 6 px    | inputs, code blocks                        |
+| `--radius-md`   | 8 px    | cards, modals                              |
+| `--radius-lg`   | 12 px   | hero media, large panels                   |
+| `--radius-full` | 9999 px | buttons, toggle                            |
+| `--shadow-*`    | above   | layered elevation, 1 level max per surface |
 
 Effects rule: grain/paper texture `data-uri` PNG (≤ 8 KB) at `opacity .03` on `--bg` only; gradients only from `--accent-grad-*`; blur `backdrop-filter: blur(8px)` on sticky header surface only (motion-safe media query).
 

@@ -4,7 +4,6 @@ import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
 
-import { readingTime, slugify } from "@/lib/utils";
 import {
   ideaFrontmatterSchema,
   labFrontmatterSchema,
@@ -17,6 +16,7 @@ import {
   type Note,
   type Work,
 } from "@/lib/schema";
+import { readingTime, slugify } from "@/lib/utils";
 
 // DEVIATION FROM tech-stack.md (D-005): the plan calls for Velite. Velite's
 // build-time codegen couldn't be installed/verified in the authoring
@@ -27,7 +27,9 @@ import {
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
-function readCollection(collection: "work" | "writing" | "lab" | "ideas" | "life") {
+function readCollection(
+  collection: "work" | "writing" | "lab" | "ideas" | "life",
+) {
   const dir = path.join(CONTENT_DIR, collection);
   if (!fs.existsSync(dir)) return [];
 
@@ -56,7 +58,10 @@ export function getAllLab(): LabEntry[] {
     .map(({ slug, data, content }) => {
       const parsed = labFrontmatterSchema.safeParse(data);
       if (!parsed.success) {
-        console.warn(`[content] skipping content/lab/${slug}: invalid frontmatter`, parsed.error.flatten());
+        console.warn(
+          `[content] skipping content/lab/${slug}: invalid frontmatter`,
+          parsed.error.flatten(),
+        );
         return null;
       }
       return { ...parsed.data, slug, body: content };
@@ -79,7 +84,10 @@ export function getAllIdeas(): Idea[] {
     .map(({ slug, data, content }) => {
       const parsed = ideaFrontmatterSchema.safeParse(data);
       if (!parsed.success) {
-        console.warn(`[content] skipping content/ideas/${slug}: invalid frontmatter`, parsed.error.flatten());
+        console.warn(
+          `[content] skipping content/ideas/${slug}: invalid frontmatter`,
+          parsed.error.flatten(),
+        );
         return null;
       }
       return {
@@ -121,7 +129,10 @@ export function getAllLife(): LifeEntry[] {
     .map(({ slug, data, content }) => {
       const parsed = lifeFrontmatterSchema.safeParse(data);
       if (!parsed.success) {
-        console.warn(`[content] skipping content/life/${slug}: invalid frontmatter`, parsed.error.flatten());
+        console.warn(
+          `[content] skipping content/life/${slug}: invalid frontmatter`,
+          parsed.error.flatten(),
+        );
         return null;
       }
       return { ...parsed.data, slug, body: content };
@@ -140,7 +151,10 @@ export function getAllWork(): Work[] {
     .map(({ slug, data, content }) => {
       const parsed = workFrontmatterSchema.safeParse(data);
       if (!parsed.success) {
-        console.warn(`[content] skipping content/work/${slug}: invalid frontmatter`, parsed.error.flatten());
+        console.warn(
+          `[content] skipping content/work/${slug}: invalid frontmatter`,
+          parsed.error.flatten(),
+        );
         return null;
       }
       return { ...parsed.data, slug, body: content };
@@ -169,7 +183,10 @@ export function getAllNotes(): Note[] {
     .map(({ slug, data, content }) => {
       const parsed = noteFrontmatterSchema.safeParse(data);
       if (!parsed.success) {
-        console.warn(`[content] skipping content/writing/${slug}: invalid frontmatter`, parsed.error.flatten());
+        console.warn(
+          `[content] skipping content/writing/${slug}: invalid frontmatter`,
+          parsed.error.flatten(),
+        );
         return null;
       }
       return {
@@ -228,7 +245,9 @@ export function getRelatedWorkForNote(note: Note, limit = 2): Work[] {
   const noteTags = note.tags.map(norm);
   return getAllWork()
     .filter((work) =>
-      [...work.industry, ...work.discipline].some((label) => noteTags.includes(norm(label))),
+      [...work.industry, ...work.discipline].some((label) =>
+        noteTags.includes(norm(label)),
+      ),
     )
     .slice(0, limit);
 }
@@ -259,7 +278,13 @@ const MIN_TOPIC_ITEMS = 2;
 export function getTopics(): Topic[] {
   const buckets = new Map<
     string,
-    { label: string; notes: Note[]; work: Work[]; lab: LabEntry[]; ideas: Idea[] }
+    {
+      label: string;
+      notes: Note[];
+      work: Work[];
+      lab: LabEntry[];
+      ideas: Idea[];
+    }
   >();
 
   const add = (
@@ -268,7 +293,8 @@ export function getTopics(): Topic[] {
     item: Note | Work | LabEntry | Idea,
   ) => {
     const key = slugify(label);
-    if (!buckets.has(key)) buckets.set(key, { label, notes: [], work: [], lab: [], ideas: [] });
+    if (!buckets.has(key))
+      buckets.set(key, { label, notes: [], work: [], lab: [], ideas: [] });
     const bucket = buckets.get(key)!;
     if (kind === "note") bucket.notes.push(item as Note);
     if (kind === "work") bucket.work.push(item as Work);
@@ -276,22 +302,31 @@ export function getTopics(): Topic[] {
     if (kind === "idea") bucket.ideas.push(item as Idea);
   };
 
-  getAllNotes().forEach((note) => note.tags.forEach((tag) => add(tag, "note", note)));
+  getAllNotes().forEach((note) =>
+    note.tags.forEach((tag) => add(tag, "note", note)),
+  );
   getAllWork().forEach((work) =>
-    [...work.industry, ...work.discipline].forEach((label) => add(label, "work", work)),
+    [...work.industry, ...work.discipline].forEach((label) =>
+      add(label, "work", work),
+    ),
   );
   // Demo lab entries don't count toward "is this topic real enough" — see
   // decision-log.md D-037.
   getAllLab()
     .filter((entry) => !entry.demo)
     .forEach((entry) => entry.tags.forEach((tag) => add(tag, "lab", entry)));
-  getAllIdeas().forEach((idea) => idea.tags.forEach((tag) => add(tag, "idea", idea)));
+  getAllIdeas().forEach((idea) =>
+    idea.tags.forEach((tag) => add(tag, "idea", idea)),
+  );
 
   return Array.from(buckets.entries())
     .map(([slug, bucket]) => ({ slug, ...bucket }))
     .filter(
       (topic) =>
-        topic.notes.length + topic.work.length + topic.lab.length + topic.ideas.length >=
+        topic.notes.length +
+          topic.work.length +
+          topic.lab.length +
+          topic.ideas.length >=
         MIN_TOPIC_ITEMS,
     )
     .sort((a, b) => a.label.localeCompare(b.label));
@@ -338,5 +373,3 @@ marked.use({ renderer: headingRenderer });
 export async function renderMarkdown(body: string): Promise<string> {
   return marked.parse(body, { async: true });
 }
-
-

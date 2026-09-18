@@ -4,11 +4,11 @@
 
 ## 1. Environments & architecture
 
-| Environment | Domain (after A-002) | Branch | Purpose |
-|---|---|---|---|
-| Development | localhost | `main` (local) | Daily work; `pnpm dev` |
-| Preview | `*.vercel.app` + per-PR URL | every PR branch | Review, QA, Lighthouse CI, external validation (OG/LinkedIn) |
-| Production | apex + `www` (redirect decision) | `main` (protected) | The live site |
+| Environment | Domain (after A-002)             | Branch             | Purpose                                                      |
+| ----------- | -------------------------------- | ------------------ | ------------------------------------------------------------ |
+| Development | localhost                        | `main` (local)     | Daily work; `pnpm dev`                                       |
+| Preview     | `*.vercel.app` + per-PR URL      | every PR branch    | Review, QA, Lighthouse CI, external validation (OG/LinkedIn) |
+| Production  | apex + `www` (redirect decision) | `main` (protected) | The live site                                                |
 
 - **GitHub → Vercel** import with framework preset `Next.js`; zero-config build (build `pnpm build`, output `.next`), pnpm detected from `packageManager` field.
 - **Branch protection on `main`:** PR required, required checks (ci.yml jobs + e2e + Lighthouse CI), no direct push. Content changes flow through PRs like code.
@@ -22,14 +22,14 @@
 
 ## 3. Environment variables (Vercel project settings → all three environments)
 
-| Var | Preview | Production | Notes |
-|---|---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | preview URL* | `https://<domain>` | *use a fixed preview domain (or leave empty + fallback) so OG/sitemap don't break on preview |
-| `NEXT_PUBLIC_SITE_NAME` | Sourov Mondol | Sourov Mondol | metadata brand |
-| `NEXT_PUBLIC_ANALYTICS_DOMAIN` | plausible domain (or test) | production Plausible domain | Plausible data-domain |
-| `RESEND_API_KEY` | test key | production key | server-only; rotate on any suspected leak (D-022) |
-| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | test instance | production instance | rate limiting (or Vercel KV — decision D-010) |
-| `CONTACT_TO_EMAIL` | owner inbox (test alias ok) | owner real inbox | fallback to `siteConfig.email`; guard against misconfigured deploys sending to garbage |
+| Var                                                   | Preview                     | Production                  | Notes                                                                                        |
+| ----------------------------------------------------- | --------------------------- | --------------------------- | -------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`                                | preview URL*                | `https://<domain>`          | *use a fixed preview domain (or leave empty + fallback) so OG/sitemap don't break on preview |
+| `NEXT_PUBLIC_SITE_NAME`                               | Sourov Mondol               | Sourov Mondol               | metadata brand                                                                               |
+| `NEXT_PUBLIC_ANALYTICS_DOMAIN`                        | plausible domain (or test)  | production Plausible domain | Plausible data-domain                                                                        |
+| `RESEND_API_KEY`                                      | test key                    | production key              | server-only; rotate on any suspected leak (D-022)                                            |
+| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | test instance               | production instance         | rate limiting (or Vercel KV — decision D-010)                                                |
+| `CONTACT_TO_EMAIL`                                    | owner inbox (test alias ok) | owner real inbox            | fallback to `siteConfig.email`; guard against misconfigured deploys sending to garbage       |
 
 Secrets are encrypted and never exposed to the client; branch-protected so only merges to `main` reach production.
 

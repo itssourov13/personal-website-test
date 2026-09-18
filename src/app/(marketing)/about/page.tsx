@@ -8,7 +8,11 @@ import { siteConfig } from "@/lib/site.config";
 export const metadata: Metadata = {
   title: "About",
   description: `About ${siteConfig.name} — background, approach, and how I work.`,
-  openGraph: { images: [`/og/about?title=${encodeURIComponent("About " + siteConfig.name)}`] },
+  openGraph: {
+    images: [
+      `/og/about?title=${encodeURIComponent("About " + siteConfig.name)}`,
+    ],
+  },
 };
 
 const principles = [
@@ -40,18 +44,18 @@ export default function AboutPage() {
       <Section className="max-w-[760px] pt-0">
         <div className="prose prose-neutral dark:prose-invert">
           <p>
-            Over the last {siteConfig.metrics[0]?.value}+ years I&apos;ve
-            worked with founders and small teams to take products from a
-            rough idea to something people actually use — usually wearing
-            both the design and engineering hats, sometimes handing off to a
-            larger team once the direction is set.
+            Over the last {siteConfig.metrics[0]?.value}+ years I&apos;ve worked
+            with founders and small teams to take products from a rough idea to
+            something people actually use — usually wearing both the design and
+            engineering hats, sometimes handing off to a larger team once the
+            direction is set.
           </p>
           <p>
             When I&apos;m not working, I&apos;m usually reading about
             typography, tinkering with the site you&apos;re on right now, or
             trying to get better at the things I write about on the{" "}
-            <Link href="/writing">writing page</Link>. See what I&apos;m focused on
-            right now on the <a href="/now">/now page</a>.
+            <Link href="/writing">writing page</Link>. See what I&apos;m focused
+            on right now on the <a href="/now">/now page</a>.
           </p>
         </div>
       </Section>
@@ -63,22 +67,27 @@ export default function AboutPage() {
         </h2>
         <div className="flex flex-col gap-8">
           {principles.map((principle) => (
-            <div key={principle.title} className="border-border border-t pt-6 first:border-t-0 first:pt-0">
+            <div
+              key={principle.title}
+              className="border-border border-t pt-6 first:border-t-0 first:pt-0"
+            >
               <h3 className="text-lg font-semibold">{principle.title}</h3>
-              <p className="text-muted mt-2 max-w-2xl">{principle.description}</p>
+              <p className="text-muted mt-2 max-w-2xl">
+                {principle.description}
+              </p>
             </div>
           ))}
         </div>
       </Section>
 
-      <Section className="bg-surface-2 flex flex-col items-start gap-4 border-t border-border">
+      <Section className="bg-surface-2 border-border flex flex-col items-start gap-4 border-t">
         <h2 className="text-display-2 max-w-lg">
           If that sounds like the right fit, let&apos;s talk.
         </h2>
         <div className="flex flex-wrap gap-3">
           <Link
             href="/contact"
-            className="min-h-11 rounded-full bg-accent px-6 py-3 font-medium text-accent-foreground hover:bg-accent-strong"
+            className="bg-accent text-accent-foreground hover:bg-accent-strong min-h-11 rounded-full px-6 py-3 font-medium"
           >
             Get in touch
           </Link>

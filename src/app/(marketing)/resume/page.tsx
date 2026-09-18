@@ -34,11 +34,13 @@ const experience = [
 export default function ResumePage() {
   return (
     <>
-      <Section className="print:pt-0 flex flex-col gap-2 pt-32 pb-4 md:pt-40">
+      <Section className="flex flex-col gap-2 pt-32 pb-4 md:pt-40 print:pt-0">
         <div className="flex items-start justify-between gap-4 print:hidden">
           <div>
             <h1 className="text-display-2">{siteConfig.name}</h1>
-            <p className="text-muted mt-2 max-w-lg text-lg">{siteConfig.tagline}</p>
+            <p className="text-muted mt-2 max-w-lg text-lg">
+              {siteConfig.tagline}
+            </p>
           </div>
           <PrintButton />
         </div>
@@ -51,7 +53,9 @@ export default function ResumePage() {
       </Section>
 
       <Section className="max-w-[760px] pt-0 print:pt-2">
-        <h2 className="mb-4 text-xl font-semibold print:text-base">Experience</h2>
+        <h2 className="mb-4 text-xl font-semibold print:text-base">
+          Experience
+        </h2>
         <div className="flex flex-col gap-8 print:gap-4">
           {experience.map((job) => (
             <div key={job.role}>

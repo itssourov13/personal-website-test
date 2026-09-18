@@ -20,22 +20,22 @@
 
 ## 3. Keyboard & focus
 
-| Requirement | Spec |
-|---|---|
-| Full keyboard operability | All interactive elements reachable + operable (Enter/Space/Escape per control type) |
-| Visible focus | `:focus-visible` ring 2 px `--focus-ring` + 2 px offset (tokens) on ALL interactive elements |
-| Logical order | DOM order = visual order; no `tabindex > 0` |
-| Skip link | First focusable: "Skip to content" → `#main` |
-| Mobile nav | Open/close via button (`aria-expanded`, `aria-controls`); focus moves into menu; Trap + return focus to trigger on close; Escape closes |
-| Filter chips | Radio-group semantics (`role="radiogroup"` or native buttons with `aria-pressed`) — decide in implementation, must announce result count (`role="status"`/`aria-live`) |
-| Accordion (FAQ) | Native `<button>` + `aria-expanded` + `aria-controls`; heading wrapper; keyboard-safe |
-| Page transitions | Focus management on route change: move to `main` heading (`tabindex="-1"`, `aria-label`); skip transitions under reduced motion |
-| Form | Labels visible + programmatic; errors `aria-describedby` + `role="alert"` region; no error-only-color signaling |
-| Dialog/toast | Toast (form success) `role="status"` + `aria-live="polite"`; announce result; no focus theft |
+| Requirement               | Spec                                                                                                                                                                   |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Full keyboard operability | All interactive elements reachable + operable (Enter/Space/Escape per control type)                                                                                    |
+| Visible focus             | `:focus-visible` ring 2 px `--focus-ring` + 2 px offset (tokens) on ALL interactive elements                                                                           |
+| Logical order             | DOM order = visual order; no `tabindex > 0`                                                                                                                            |
+| Skip link                 | First focusable: "Skip to content" → `#main`                                                                                                                           |
+| Mobile nav                | Open/close via button (`aria-expanded`, `aria-controls`); focus moves into menu; Trap + return focus to trigger on close; Escape closes                                |
+| Filter chips              | Radio-group semantics (`role="radiogroup"` or native buttons with `aria-pressed`) — decide in implementation, must announce result count (`role="status"`/`aria-live`) |
+| Accordion (FAQ)           | Native `<button>` + `aria-expanded` + `aria-controls`; heading wrapper; keyboard-safe                                                                                  |
+| Page transitions          | Focus management on route change: move to `main` heading (`tabindex="-1"`, `aria-label`); skip transitions under reduced motion                                        |
+| Form                      | Labels visible + programmatic; errors `aria-describedby` + `role="alert"` region; no error-only-color signaling                                                        |
+| Dialog/toast              | Toast (form success) `role="status"` + `aria-live="polite"`; announce result; no focus theft                                                                           |
 
 ## 4. Content & media
 
-- Images: meaningful `alt` (≤ 125 chars, describes the *lesson* of project screenshots: what changed/was achieved — brand policy); decorative `alt=""`; no `alt` = review-blocker.
+- Images: meaningful `alt` (≤ 125 chars, describes the _lesson_ of project screenshots: what changed/was achieved — brand policy); decorative `alt=""`; no `alt` = review-blocker.
 - Links: descriptive text ("see how we rebuilt the checkout") — no "click here"; external links announce `aria-label` "Opens in new tab" + icon.
 - Text: WCAG contrast (design-guidelines §2.1 table verified); body ≥ 16 px; no text in images.
 - Motion: `prefers-reduced-motion: reduce` → all decorative motion off (Reveal static, counters show final, Lenis off, transitions instant, marquee static).
@@ -69,16 +69,16 @@
 
 ## 8. Testing matrix (per page, pre-ship)
 
-| Test | Tool | Gate |
-|---|---|---|
-| Automated axe scan | Playwright + axe | 0 violations / 0 serious-crit issues |
-| Keyboard walkthrough | Manual script (§3) | All controls pass |
-| Focus visibility | Manual | Ring visible on every control |
-| Screen reader spot | VoiceOver/NVDA (§7) | §7 script passes |
-| Zoom 200% + 400% | Browser | No loss of function/overlap/h-scroll |
-| Reduced motion | DevTools emulate | No stray animation; content intact |
-| Contrast audit | axe + manual (§4) | All AA text passes |
-| TTS/reader mode | Reader mode test on notes | Clean article extraction |
+| Test                 | Tool                      | Gate                                 |
+| -------------------- | ------------------------- | ------------------------------------ |
+| Automated axe scan   | Playwright + axe          | 0 violations / 0 serious-crit issues |
+| Keyboard walkthrough | Manual script (§3)        | All controls pass                    |
+| Focus visibility     | Manual                    | Ring visible on every control        |
+| Screen reader spot   | VoiceOver/NVDA (§7)       | §7 script passes                     |
+| Zoom 200% + 400%     | Browser                   | No loss of function/overlap/h-scroll |
+| Reduced motion       | DevTools emulate          | No stray animation; content intact   |
+| Contrast audit       | axe + manual (§4)         | All AA text passes                   |
+| TTS/reader mode      | Reader mode test on notes | Clean article extraction             |
 
 ## 9. Ownership & regressions
 

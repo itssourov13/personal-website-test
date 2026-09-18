@@ -1,6 +1,6 @@
 # Premium Design Concept & UI/UX Direction
 
-> ✅ Approved baseline. This is the *concept* — the concrete tokens, type, and component rules are in `01-brand/design-guidelines.md`. Read both before any UI work.
+> ✅ Approved baseline. This is the _concept_ — the concrete tokens, type, and component rules are in `01-brand/design-guidelines.md`. Read both before any UI work.
 
 ## 1. Concept name: **"The Printed Studio"**
 
@@ -24,27 +24,32 @@ Three mental models that drive every decision:
 ## 3. Visual direction (see `design-guidelines.md` for the exact system)
 
 ### 3.1 Palette story: **Paper & Ink, one copper thread**
+
 - Light: warm off-white paper (`--bg #F7F5F1`), warm near-black ink (`--fg #191714`), one accent: burnt copper (`--accent #B45F3E`) for links, focus, key numbers, the wordmark full stop.
 - Dark: reverse — near-black warm (#141312) paper, cream ink (#F2EFEA), lightened copper (#D8906B) for contrast.
 - No rainbow palettes. Neutrals are warm-tinted (never pure gray/blue-gray) — that's half the "premium" feel.
 
 ### 3.2 Type story: **Serif soul + sans clarity**
+
 - Fraunces (variable, optical size axis) for display/headings — distinctive, editorial, human. Letter-spaced slightly negative.
 - Inter for UI/body — invisible, fast, legible at all sizes.
 - One accent typeface only; system fallbacks documented. No third font in v1 (D-020).
 
 ### 3.3 Layout story: **The gallery wall**
+
 - 12-column grid, max content width 1200 px, generous gutters; prose width capped at 760 px (measures of 60–75 chars).
 - Alternating rhythm: full-bleed moments (hero, case-study imagery) against quiet, airy sections.
 - Section spacing ≥ 96 px desktop / 64 px mobile — whitespace is the luxury.
 - Hairline borders (`--border`) instead of heavy cards; cards use 1 px borders + soft shadows, rarely filled panels.
 
 ### 3.4 Image & asset treatment
+
 - Project imagery: browser-frame screenshots on warm-tinted backgrounds, subtle 3D tilt on hover (desktop only, reduced-motion off).
 - Consistent grading: warm highlights, soft shadows, slight desaturation — a single look across all photos.
 - Photography: over-edited = fast-food; this brand is slow food.
 
 ### 3.5 Motion story (details: `04-strategy/animation-plan.md`)
+
 - **Entrance:** single elegant intro sequence on Home (wordmark + statement line, ~600 ms, decelerate easing); all other pages fade/slide up subtly (300–400 ms).
 - **Scroll:** elements reveal once when they enter the viewport (staggered, 40–80 ms offsets); reveal distance small (16–24 px) — restraint is key.
 - **Micro:** links underline slide; buttons' arrows nudge; cards lift 2 px with a copper hairline; theme toggle performs a 250 ms crossfade.
@@ -54,20 +59,20 @@ Three mental models that drive every decision:
 
 ## 4. UI/UX ideas worth prototyping (ranked)
 
-| # | Idea | Value | Effort | Phase |
-|---|------|-------|--------|-------|
-| 1 | Hero = one perfect sentence + wordmark + availability pill ("booking Q4 2026") | High — instant clarity (P1) | Low | P2 |
-| 2 | Case studies as evidence stories (problem → process → outcome, with metrics band) | High — conversion | Med | P3 |
-| 3 | Work index filters (discipline / industry) with animated layout transitions | Med-High | Med | P3 |
-| 4 | Selected-work spotlight on Home with hover preview (media swap) | High — show don't tell | Med | P2 |
-| 5 | "Handshake" footer CTA: "Let's make something exceptional." + mailto/form | High — conversion | Low | P2 |
-| 6 | Reading-time + progress bar on notes (thin copper line) | Med — trust + delight | Low | P4 |
-| 7 | Sticky header that shrinks + gains hairline border on scroll | Low-Med — polish | Low | P2 |
-| 8 | Availability pill in header (public calendar link later, F-13) | High — lead gen | Low | P2 |
-| 9 | Testimonial "ticket" cards — quote, attribution, project link | Med | Low | P3 |
-| 10 | Keyboard command palette (⌘K) for work/notes — playful but useful | Med | Med | P5+ (F-22) |
-| 11 | Cursor-follow copper glow (desktop, pointing devices only) | Low-Med — delight | Med | P4 (optional) |
-| 12 | Service pages with "typical engagement" timeline graphic | Med — de-risks hiring | Med | P3 |
+| #   | Idea                                                                              | Value                       | Effort | Phase         |
+| --- | --------------------------------------------------------------------------------- | --------------------------- | ------ | ------------- |
+| 1   | Hero = one perfect sentence + wordmark + availability pill ("booking Q4 2026")    | High — instant clarity (P1) | Low    | P2            |
+| 2   | Case studies as evidence stories (problem → process → outcome, with metrics band) | High — conversion           | Med    | P3            |
+| 3   | Work index filters (discipline / industry) with animated layout transitions       | Med-High                    | Med    | P3            |
+| 4   | Selected-work spotlight on Home with hover preview (media swap)                   | High — show don't tell      | Med    | P2            |
+| 5   | "Handshake" footer CTA: "Let's make something exceptional." + mailto/form         | High — conversion           | Low    | P2            |
+| 6   | Reading-time + progress bar on notes (thin copper line)                           | Med — trust + delight       | Low    | P4            |
+| 7   | Sticky header that shrinks + gains hairline border on scroll                      | Low-Med — polish            | Low    | P2            |
+| 8   | Availability pill in header (public calendar link later, F-13)                    | High — lead gen             | Low    | P2            |
+| 9   | Testimonial "ticket" cards — quote, attribution, project link                     | Med                         | Low    | P3            |
+| 10  | Keyboard command palette (⌘K) for work/notes — playful but useful                 | Med                         | Med    | P5+ (F-22)    |
+| 11  | Cursor-follow copper glow (desktop, pointing devices only)                        | Low-Med — delight           | Med    | P4 (optional) |
+| 12  | Service pages with "typical engagement" timeline graphic                          | Med — de-risks hiring       | Med    | P3            |
 
 Prototype #1, #4, #6, #8 in P2–P4. Others are optional; ship only if quality bar holds.
 

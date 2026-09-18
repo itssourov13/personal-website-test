@@ -10,7 +10,13 @@ type NavLinkProps = ComponentPropsWithRef<typeof Link>;
 
 // React 19 / Next 15: function components accept `ref` as a plain prop, no
 // forwardRef wrapper needed.
-export default function NavLink({ href, className, children, ref, ...props }: NavLinkProps) {
+export default function NavLink({
+  href,
+  className,
+  children,
+  ref,
+  ...props
+}: NavLinkProps) {
   const pathname = usePathname();
   const isActive =
     href === "/" ? pathname === "/" : pathname.startsWith(href.toString());

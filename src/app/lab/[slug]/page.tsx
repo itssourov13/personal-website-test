@@ -63,7 +63,12 @@ export default async function LabEntryPage({
           {entry.externalUrl ? (
             <>
               {" · "}
-              <a href={entry.externalUrl} target="_blank" rel="noopener noreferrer" className="underline">
+              <a
+                href={entry.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
                 View externally
               </a>
             </>

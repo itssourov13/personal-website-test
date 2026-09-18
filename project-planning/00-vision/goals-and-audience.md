@@ -4,24 +4,24 @@
 
 ## 1. Business / project goals (SMART-ish, measurable after launch)
 
-| ID | Goal | How we measure it | Target (post-launch, 3 months) |
-|----|------|-------------------|--------------------------------|
-| G-1 | Establish a premium professional presence | Bounce rate on home; time on case studies | Bounce < 40%; avg. case-study view > 90 s |
-| G-2 | Generate consulting conversations | Contact form submits + direct email replies | ≥ 3 qualified conversations / month |
-| G-3 | Grow an owned audience | RSS/email subscribers; shares of notes | 25% MoM note reads after first 3 notes |
-| G-4 | Become findable for the right queries | Organic impressions for target keywords | Rank in top 10 for 3 target NLP/keyword clusters (see `04-strategy/seo-strategy.md`) |
-| G-5 | Demonstrate engineering craft | Core Web Vitals pass rate; Lighthouse | CWV ≥ 99% healthy sessions; LH ≥ 95 perf |
-| G-6 | Look current in 5 years | Design-system debt metrics (drift from tokens) | 0 drift: all UI uses tokens (D-017) |
-| G-7 | Zero avoidable maintenance burden | Time spent on maintenance | < 2 h/month routine upkeep |
+| ID  | Goal                                      | How we measure it                              | Target (post-launch, 3 months)                                                       |
+| --- | ----------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------ |
+| G-1 | Establish a premium professional presence | Bounce rate on home; time on case studies      | Bounce < 40%; avg. case-study view > 90 s                                            |
+| G-2 | Generate consulting conversations         | Contact form submits + direct email replies    | ≥ 3 qualified conversations / month                                                  |
+| G-3 | Grow an owned audience                    | RSS/email subscribers; shares of notes         | 25% MoM note reads after first 3 notes                                               |
+| G-4 | Become findable for the right queries     | Organic impressions for target keywords        | Rank in top 10 for 3 target NLP/keyword clusters (see `04-strategy/seo-strategy.md`) |
+| G-5 | Demonstrate engineering craft             | Core Web Vitals pass rate; Lighthouse          | CWV ≥ 99% healthy sessions; LH ≥ 95 perf                                             |
+| G-6 | Look current in 5 years                   | Design-system debt metrics (drift from tokens) | 0 drift: all UI uses tokens (D-017)                                                  |
+| G-7 | Zero avoidable maintenance burden         | Time spent on maintenance                      | < 2 h/month routine upkeep                                                           |
 
 ## 2. Target audience — primary
 
 **The primary reader is a decision-maker who can hire, fund, or refer the owner.**
 
-| Persona | Who they are | What they need | What would convert them |
-|---|---|---|---|
+| Persona                                                          | Who they are                                                                       | What they need                                                             | What would convert them                                             |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | **Product leads / founders** (startups → scale-ups, teams 5–200) | Hiring a senior design+engineering hand for a product push; evaluating consultants | Proof of shipped, measurable work; clear engagement model; signal of taste | 2–3 relevant case studies + crisp "how we work" + fast contact path |
-| **Design & engineering leaders** (VPs, staff+ ICs) | Looking for contributors, collaborators, or referrals | Depth of thinking; quality of writing; judgment | Case studies + notes; well-crafted detail pages; shareable insights |
+| **Design & engineering leaders** (VPs, staff+ ICs)               | Looking for contributors, collaborators, or referrals                              | Depth of thinking; quality of writing; judgment                            | Case studies + notes; well-crafted detail pages; shareable insights |
 
 ## 3. Target audience — secondary
 
@@ -50,7 +50,7 @@ Every page must link onward along at least one path (internal-linking rules: `04
 ## 6. What success feels like for the visitor
 
 - < 10 s to know exactly who the owner is and whether they're relevant.
-- Every page answers *"what am I looking at, why does it matter, what do I do next?"*
+- Every page answers _"what am I looking at, why does it matter, what do I do next?"_
 - Nothing is broken, slow, or awkward — on a phone, a laptop, or with a screen reader, with or without motion and JS.
 - Leaving is pleasant too: 404 is designed, dead ends don't exist.
 

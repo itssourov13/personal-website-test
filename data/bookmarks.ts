@@ -2,7 +2,14 @@ export type Bookmark = {
   title: string;
   url: string;
   description: string;
-  category: "Security" | "Engineering" | "Design" | "AI" | "Research" | "Writing" | "Tools";
+  category:
+    | "Security"
+    | "Engineering"
+    | "Design"
+    | "AI"
+    | "Research"
+    | "Writing"
+    | "Tools";
   dateAdded: string; // ISO
   /** Sample content standing in for a real, personally-vetted bookmark.
    * Rendered with a visible "Sample" tag; see decision-log.md D-037. */
@@ -18,7 +25,8 @@ export const bookmarks: Bookmark[] = [
   {
     title: "web.dev — Learn (Google)",
     url: "https://web.dev/learn",
-    description: "A solid, current reference for web performance and modern CSS/JS fundamentals.",
+    description:
+      "A solid, current reference for web performance and modern CSS/JS fundamentals.",
     category: "Engineering",
     dateAdded: "2026-01-01",
     demo: true,
@@ -26,7 +34,8 @@ export const bookmarks: Bookmark[] = [
   {
     title: "A11y Project checklist",
     url: "https://www.a11yproject.com/checklist/",
-    description: "The checklist I use as a baseline sanity check before shipping anything client-facing.",
+    description:
+      "The checklist I use as a baseline sanity check before shipping anything client-facing.",
     category: "Design",
     dateAdded: "2026-01-01",
     demo: true,

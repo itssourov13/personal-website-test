@@ -39,7 +39,8 @@ export default function MobileNav({
 
       if (event.key !== "Tab" || !menuRef.current) return;
 
-      const focusable = menuRef.current.querySelectorAll<HTMLElement>("a, button");
+      const focusable =
+        menuRef.current.querySelectorAll<HTMLElement>("a, button");
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
       if (!first || !last) return;
@@ -55,7 +56,6 @@ export default function MobileNav({
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   return (
@@ -67,7 +67,7 @@ export default function MobileNav({
         aria-controls="mobile-nav-menu"
         aria-label={open ? "Close menu" : "Open menu"}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-11 w-11 items-center justify-center rounded-full hover:bg-surface-2"
+        className="hover:bg-surface-2 flex h-11 w-11 items-center justify-center rounded-full"
       >
         <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
           {open ? (

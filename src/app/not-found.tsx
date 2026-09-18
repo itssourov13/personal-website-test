@@ -26,8 +26,8 @@ export default function NotFound() {
         <p className="text-overline text-accent-strong">404</p>
         <h1 className="text-display-2 mt-2">This page wandered off.</h1>
         <p className="text-muted mt-4 max-w-md">
-          The link might be broken, or the page moved. Here&apos;s where
-          you might have been headed instead:
+          The link might be broken, or the page moved. Here&apos;s where you
+          might have been headed instead:
         </p>
       </div>
 
@@ -46,7 +46,7 @@ export default function NotFound() {
 
       <Link
         href="/"
-        className="min-h-11 rounded-full bg-accent px-5 py-2.5 font-medium text-accent-foreground hover:bg-accent-strong"
+        className="bg-accent text-accent-foreground hover:bg-accent-strong min-h-11 rounded-full px-5 py-2.5 font-medium"
       >
         Back home
       </Link>

@@ -43,7 +43,11 @@ export default async function TopicPage({
           <p className="text-faint mb-4 text-sm">Writing</p>
           <div className="flex flex-col gap-3">
             {topic.notes.map((note) => (
-              <Link key={note.slug} href={`/writing/${note.slug}`} className="font-medium hover:underline">
+              <Link
+                key={note.slug}
+                href={`/writing/${note.slug}`}
+                className="font-medium hover:underline"
+              >
                 {note.title}
               </Link>
             ))}
@@ -72,7 +76,11 @@ export default async function TopicPage({
           <p className="text-faint mb-4 text-sm">Lab</p>
           <div className="flex flex-col gap-3">
             {topic.lab.map((entry) => (
-              <Link key={entry.slug} href={`/lab/${entry.slug}`} className="font-medium hover:underline">
+              <Link
+                key={entry.slug}
+                href={`/lab/${entry.slug}`}
+                className="font-medium hover:underline"
+              >
                 {entry.title}
               </Link>
             ))}
@@ -85,7 +93,11 @@ export default async function TopicPage({
           <p className="text-faint mb-4 text-sm">Ideas</p>
           <div className="flex flex-col gap-3">
             {topic.ideas.map((idea) => (
-              <Link key={idea.slug} href={`/ideas/${idea.slug}`} className="font-medium hover:underline">
+              <Link
+                key={idea.slug}
+                href={`/ideas/${idea.slug}`}
+                className="font-medium hover:underline"
+              >
                 {idea.title}
               </Link>
             ))}

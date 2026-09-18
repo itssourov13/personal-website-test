@@ -11,12 +11,12 @@
 
 ## 2. Keyword strategy (v1 targets — refine with GSC data post-launch)
 
-| Cluster | Intent | Target pages | Realistic horizon |
-|---|---|---|---|
-| `[discipline] portfolio/case study` (e.g., "product design case study", "design engineer portfolio") | Evaluation | Work + case studies | 3–6 months |
-| Person-based ("Sourov Mondol designer") | Brand | Home/About | 1–3 months |
-| Long-tail expertise notes ("design tokens governance", "accessibility in design systems", "frontend performance budgets") | Learning | Writing | 6–12 months (compounding) |
-| Question clusters for services ("how much does a design sprint cost", "fractional product designer") | Pre-sales | Services FAQ + notes | 6–12 months |
+| Cluster                                                                                                                   | Intent     | Target pages         | Realistic horizon         |
+| ------------------------------------------------------------------------------------------------------------------------- | ---------- | -------------------- | ------------------------- |
+| `[discipline] portfolio/case study` (e.g., "product design case study", "design engineer portfolio")                      | Evaluation | Work + case studies  | 3–6 months                |
+| Person-based ("Sourov Mondol designer")                                                                                   | Brand      | Home/About           | 1–3 months                |
+| Long-tail expertise notes ("design tokens governance", "accessibility in design systems", "frontend performance budgets") | Learning   | Writing              | 6–12 months (compounding) |
+| Question clusters for services ("how much does a design sprint cost", "fractional product designer")                      | Pre-sales  | Services FAQ + notes | 6–12 months               |
 
 **Method:** 1 focus query per page/note → title template `[Focus] — Sourov Mondol` (≤ 60 chars); meta description 140–155 chars with value prop; keyword appears in h1, first 100 words, one `<h2>`, image alts (naturally).
 
@@ -49,14 +49,14 @@ Core Web Vitals feed rankings: budgets and monitoring in `04-strategy/performanc
 
 ## 6. Post-launch SEO program (maintenance plan parallel)
 
-| Cadence | Action |
-|---|---|
-| Monthly | GSC: queries→ CTR/impressions; adjust titles/descriptions; fix coverage warnings; check Core Web Vitals report |
-| Monthly | 1 quality note published (content calendar) |
-| Quarterly | Refresh outdated notes (add `updated`, improve, re-link); prune dead links; review sitemap |
-| Quarterly | Backlinks: respond to genuine mentions; no link buying; list in `notes-and-assumptions` §External |
-| On content edit | Run redirect check (`next.config` 301 map for old slugs); grep internal links |
-| Continuous | Plausible goals: case-study views, contact CTA clicks, note reads — feed G-2/G-4 |
+| Cadence         | Action                                                                                                         |
+| --------------- | -------------------------------------------------------------------------------------------------------------- |
+| Monthly         | GSC: queries→ CTR/impressions; adjust titles/descriptions; fix coverage warnings; check Core Web Vitals report |
+| Monthly         | 1 quality note published (content calendar)                                                                    |
+| Quarterly       | Refresh outdated notes (add `updated`, improve, re-link); prune dead links; review sitemap                     |
+| Quarterly       | Backlinks: respond to genuine mentions; no link buying; list in `notes-and-assumptions` §External              |
+| On content edit | Run redirect check (`next.config` 301 map for old slugs); grep internal links                                  |
+| Continuous      | Plausible goals: case-study views, contact CTA clicks, note reads — feed G-2/G-4                               |
 
 ## 7. Anti-patterns (never)
 

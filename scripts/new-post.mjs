@@ -9,7 +9,11 @@ import path from "node:path";
 
 const [, , collection, slug] = process.argv;
 
-if (!collection || !slug || !["work", "writing", "ideas", "life"].includes(collection)) {
+if (
+  !collection ||
+  !slug ||
+  !["work", "writing", "ideas", "life"].includes(collection)
+) {
   console.error("Usage: pnpm new-post <work|writing|ideas|life> <slug>");
   process.exit(1);
 }

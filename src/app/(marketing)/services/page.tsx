@@ -8,7 +8,9 @@ import Section from "@/components/ui/Section";
 export const metadata: Metadata = {
   title: "Services",
   description: "How engagements are scoped and what's included.",
-  openGraph: { images: [`/og/services?title=${encodeURIComponent("Services")}`] },
+  openGraph: {
+    images: [`/og/services?title=${encodeURIComponent("Services")}`],
+  },
 };
 
 const services = [
@@ -80,7 +82,7 @@ export default function ServicesPage() {
         </dl>
         <Link
           href="/contact"
-          className="mt-10 inline-block min-h-11 rounded-full bg-accent px-6 py-3 font-medium text-accent-foreground hover:bg-accent-strong"
+          className="bg-accent text-accent-foreground hover:bg-accent-strong mt-10 inline-block min-h-11 rounded-full px-6 py-3 font-medium"
         >
           Start a project
         </Link>

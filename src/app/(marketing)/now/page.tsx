@@ -27,18 +27,18 @@ export default function NowPage() {
         <div className="prose prose-neutral dark:prose-invert">
           <h2>Work</h2>
           <p>
-            Wrapping the Atlas Analytics dashboard rebuild and starting to
-            scope a new project for {siteConfig.availability.label.toLowerCase()}.
+            Wrapping the Atlas Analytics dashboard rebuild and starting to scope
+            a new project for {siteConfig.availability.label.toLowerCase()}.
           </p>
           <h2>Learning</h2>
           <p>
-            Going deeper on motion design — specifically when restraint beats
-            a flourish, which is most of the time.
+            Going deeper on motion design — specifically when restraint beats a
+            flourish, which is most of the time.
           </p>
           <h2>Reading</h2>
           <p>
-            A stack of books on editorial typography, mostly to steal ideas
-            for how this site presents long-form writing.
+            A stack of books on editorial typography, mostly to steal ideas for
+            how this site presents long-form writing.
           </p>
         </div>
       </Section>

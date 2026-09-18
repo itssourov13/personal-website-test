@@ -38,7 +38,10 @@ export default function TopicsPage() {
                 >
                   {topic.label}
                   <span className="text-faint ml-2">
-                    {topic.notes.length + topic.work.length + topic.lab.length + topic.ideas.length}
+                    {topic.notes.length +
+                      topic.work.length +
+                      topic.lab.length +
+                      topic.ideas.length}
                   </span>
                 </Link>
               </li>

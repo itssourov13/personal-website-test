@@ -16,28 +16,28 @@ tokens (CSS vars) ──► primitives (ui/) ──► composites (layout/ + sec
 
 Pure presentational, server-renderable by default, fully token-styled, no data fetching.
 
-| Component | API sketch | Notes |
-|---|---|---|
-| `Button` | `variant: primary|secondary|ghost|link`, `size: sm|md|lg`, `asChild?` (slot) | Primary = accent bg (AA-checked), pill radius; supports `loading` state (spinner + disabled) |
-| `Link` | wraps next/link + `external?` | Inline links get copper underline slide animation (motion-safe only); external gets icon + `rel="noopener noreferrer"` |
-| `Badge` / `Pill` | `tone: neutral|accent|success` | Chips for stack/tags/availability |
-| `Card` | `as` polymorphic, optional `hover` | 1 px border + `--shadow-sm`; hover: lift 2 px + `--shadow-md` + copper hairline |
-| `Section` | `id?`, `eyebrow?`, `title?`, `intro?`, `padding?` | Encodes section rhythm tokens; optional `maxWidth: prose|content|full` |
-| `Prose` | wraps typography plugin | Brand-styled MDX body (headings, lists, blockquote, code, tables) |
-| `Input` / `Textarea` / `Field` | label, error, hint, `aria-describedby` wiring | All form primitives; 44 px+ targets; error states with `role="alert"` text |
-| `Spinner` / `Skeleton` | size, tone | Respect reduced-motion (static/ pulse-off) |
-| `Markdown` | renders MDX/markdown remotely or from local | Server-side render; disallow raw HTML by default (security) |
+| Component                      | API sketch                                        | Notes                                                                                                                  |
+| ------------------------------ | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `Button`                       | `variant: primary                                 | secondary                                                                                                              | ghost    | link`, `size: sm                  | md  | lg`, `asChild?` (slot) | Primary = accent bg (AA-checked), pill radius; supports `loading` state (spinner + disabled) |
+| `Link`                         | wraps next/link + `external?`                     | Inline links get copper underline slide animation (motion-safe only); external gets icon + `rel="noopener noreferrer"` |
+| `Badge` / `Pill`               | `tone: neutral                                    | accent                                                                                                                 | success` | Chips for stack/tags/availability |
+| `Card`                         | `as` polymorphic, optional `hover`                | 1 px border + `--shadow-sm`; hover: lift 2 px + `--shadow-md` + copper hairline                                        |
+| `Section`                      | `id?`, `eyebrow?`, `title?`, `intro?`, `padding?` | Encodes section rhythm tokens; optional `maxWidth: prose                                                               | content  | full`                             |
+| `Prose`                        | wraps typography plugin                           | Brand-styled MDX body (headings, lists, blockquote, code, tables)                                                      |
+| `Input` / `Textarea` / `Field` | label, error, hint, `aria-describedby` wiring     | All form primitives; 44 px+ targets; error states with `role="alert"` text                                             |
+| `Spinner` / `Skeleton`         | size, tone                                        | Respect reduced-motion (static/ pulse-off)                                                                             |
+| `Markdown`                     | renders MDX/markdown remotely or from local       | Server-side render; disallow raw HTML by default (security)                                                            |
 
 ## 3. Layout composites (`src/components/layout/`)
 
-| Component | Client? | Behavior |
-|---|---|---|
-| `Header` | server shell + client `MobileNav`/`ThemeToggle` children | Sticky; transparent → surface+hairline on scroll (tiny client hook `useScrolled`, or CSS `scroll-driven` progressive enhancement); availability pill from `siteConfig` |
-| `Footer` | server | 4 zones per ui-ux-ideas §3; year auto; colophon line |
-| `MobileNav` | **client** | Overlay menu, focus trap, Escape handling, `aria-expanded`, staggered entrance; disabled JS → links still present (static fallback list) |
-| `SkipLink` | server | "Skip to content" — first focusable on every page |
-| `ThemeToggle` | **client** | next-themes; `aria-label` announces action; crossfade 250 ms |
-| `ScrollProgress` | **client** | Notes only; thin copper bar; `aria-hidden`, reduced-motion: none |
+| Component        | Client?                                                  | Behavior                                                                                                                                                               |
+| ---------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Header`         | server shell + client `MobileNav`/`ThemeToggle` children | Sticky; transparent → surface+hairline on scroll (tiny client hook `useScrolled`, or CSS `scroll-driven` progressive enhancement); availability pill from `siteConfig` |
+| `Footer`         | server                                                   | 4 zones per ui-ux-ideas §3; year auto; colophon line                                                                                                                   |
+| `MobileNav`      | **client**                                               | Overlay menu, focus trap, Escape handling, `aria-expanded`, staggered entrance; disabled JS → links still present (static fallback list)                               |
+| `SkipLink`       | server                                                   | "Skip to content" — first focusable on every page                                                                                                                      |
+| `ThemeToggle`    | **client**                                               | next-themes; `aria-label` announces action; crossfade 250 ms                                                                                                           |
+| `ScrollProgress` | **client**                                               | Notes only; thin copper bar; `aria-hidden`, reduced-motion: none                                                                                                       |
 
 ## 4. Section composites (`src/components/sections/`)
 
@@ -46,15 +46,15 @@ All server by default; each maps to a Home/page section:
 
 ## 5. Motion components (`src/components/motion/`)
 
-| Component | Purpose | Reduced-motion |
-|---|---|---|
-| `Reveal` | Fade+rise 16–24 px on viewport enter (once) | Renders statically (visible, no transform) |
-| `StaggerGroup` | Orchestrates children offsets (40–80 ms) | Same |
-| `PageTransition` | Route change fade+8 px rise (View Transitions API first, Motion fallback) | Instant swap |
-| `MetricCounter` | Count-up on reveal (desktop + intersection) | Show final value immediately |
-| `Marquee` | Client wordmarks; slow, edge-fade, pause on hover | Static wrap or single row |
-| `MagneticButton` | Subtle cursor magnetism (pointing devices only, ≤ 4 px) | Disabled |
-| `CursorGlow` | Optional copper glow (desktop only) | Disabled |
+| Component        | Purpose                                                                   | Reduced-motion                             |
+| ---------------- | ------------------------------------------------------------------------- | ------------------------------------------ |
+| `Reveal`         | Fade+rise 16–24 px on viewport enter (once)                               | Renders statically (visible, no transform) |
+| `StaggerGroup`   | Orchestrates children offsets (40–80 ms)                                  | Same                                       |
+| `PageTransition` | Route change fade+8 px rise (View Transitions API first, Motion fallback) | Instant swap                               |
+| `MetricCounter`  | Count-up on reveal (desktop + intersection)                               | Show final value immediately               |
+| `Marquee`        | Client wordmarks; slow, edge-fade, pause on hover                         | Static wrap or single row                  |
+| `MagneticButton` | Subtle cursor magnetism (pointing devices only, ≤ 4 px)                   | Disabled                                   |
+| `CursorGlow`     | Optional copper glow (desktop only)                                       | Disabled                                   |
 
 Implementation rule: every motion component reads reduced motion via `useReducedMotion`/media query; SSR output must be identical to reduced-motion output (no layout jump).
 

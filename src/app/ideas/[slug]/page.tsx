@@ -112,7 +112,10 @@ export default async function IdeaDetailPage({
           <ul className="flex flex-col gap-3">
             {related.map((item) => (
               <li key={item.slug}>
-                <Link href={`/ideas/${item.slug}`} className="font-medium hover:underline">
+                <Link
+                  href={`/ideas/${item.slug}`}
+                  className="font-medium hover:underline"
+                >
                   {item.title}
                 </Link>
               </li>

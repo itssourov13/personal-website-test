@@ -6,15 +6,15 @@
 
 The site sells **evidence of craft**, not adjectives. Content types map to conversions:
 
-| Content type | Converts | Because it demonstrates |
-|---|---|---|
-| Case studies | Hire path | Problem→process→outcome with metrics |
-| Notes | Trust path + SEO | Thinking, judgment, generosity |
-| Services/FAQ copy | Hire path | Clarity, honest scoping |
-| About | All paths | Humanity, credibility, values |
-| Microcopy | Brand loyalty | Attention to detail everywhere |
+| Content type      | Converts         | Because it demonstrates              |
+| ----------------- | ---------------- | ------------------------------------ |
+| Case studies      | Hire path        | Problem→process→outcome with metrics |
+| Notes             | Trust path + SEO | Thinking, judgment, generosity       |
+| Services/FAQ copy | Hire path        | Clarity, honest scoping              |
+| About             | All paths        | Humanity, credibility, values        |
+| Microcopy         | Brand loyalty    | Attention to detail everywhere       |
 
-**Thesis:** *Depth is the differentiator.* One honest, metric-backed case study out-credentializes ten glossy ones.
+**Thesis:** _Depth is the differentiator._ One honest, metric-backed case study out-credentializes ten glossy ones.
 
 ## 2. Content pillars (3)
 
@@ -23,28 +23,30 @@ The site sells **evidence of craft**, not adjectives. Content types map to conve
 3. **The practice — "How we should work together"** → notes on consulting, scoping, collaboration; supports services conversion.
 
 Content calendar cadence (post-launch; v1 ships the inventory in §5):
+
 - Case study: per completed engagement (1–3/yr), published within 2–4 weeks of wrap.
 - Notes: **1/month** sustainable minimum, quality-gated (tone pass + fact check).
 - Site copy refresh: quarterly review of home/services/contact (measure + iterate).
 
 ## 3. Content inventory — v1 deliverables
 
-| Item | Type | Status plan | Owner notes |
-|---|---|---|---|
-| Home hero + sections copy | Page | Write in P2 | Includes microcopy, availability label |
-| Case study A | Work MDX | Draft in P3 | Highest-impact recent project |
-| Case study B | Work MDX | Draft in P3 | Second project (different discipline if possible) |
-| Case study C (optional) | Work MDX | Quality-gate | Only if it clears the bar (A-004) |
-| Note 1 — design systems | Writing MDX | Draft in P3 | E.g., "Design tokens are a contract, not a theme" |
-| Note 2 — performance | Writing MDX | Draft in P3 | E.g., "Why my site loads in under a second" (meta, dogfood) |
-| Note 3 (optional) | Writing MDX | Quality-gate | A-005 |
-| About bio + principles | Page | Write in P2 | 200–350 words + 3–5 principles |
-| Services copy + 3 models + FAQ | Page | Write in P3 | FAQ from real pre-sales questions |
-| Testimonials (2–3) | data/ | Collect P3 | Ask past clients; name/anonymize |
-| 404 + empty states + errors | Microcopy | P1–P4 | Deliberate, on-brand |
-| site.config copy | Config | P1 | Signals + one-liners |
+| Item                           | Type        | Status plan  | Owner notes                                                 |
+| ------------------------------ | ----------- | ------------ | ----------------------------------------------------------- |
+| Home hero + sections copy      | Page        | Write in P2  | Includes microcopy, availability label                      |
+| Case study A                   | Work MDX    | Draft in P3  | Highest-impact recent project                               |
+| Case study B                   | Work MDX    | Draft in P3  | Second project (different discipline if possible)           |
+| Case study C (optional)        | Work MDX    | Quality-gate | Only if it clears the bar (A-004)                           |
+| Note 1 — design systems        | Writing MDX | Draft in P3  | E.g., "Design tokens are a contract, not a theme"           |
+| Note 2 — performance           | Writing MDX | Draft in P3  | E.g., "Why my site loads in under a second" (meta, dogfood) |
+| Note 3 (optional)              | Writing MDX | Quality-gate | A-005                                                       |
+| About bio + principles         | Page        | Write in P2  | 200–350 words + 3–5 principles                              |
+| Services copy + 3 models + FAQ | Page        | Write in P3  | FAQ from real pre-sales questions                           |
+| Testimonials (2–3)             | data/       | Collect P3   | Ask past clients; name/anonymize                            |
+| 404 + empty states + errors    | Microcopy   | P1–P4        | Deliberate, on-brand                                        |
+| site.config copy               | Config      | P1           | Signals + one-liners                                        |
 
 **Content quality bar (applies to everything):**
+
 - Specific > generic; numbers over adjectives; honest failures included in case studies.
 - Readable at 8th-grade level for notes (short sentences; jargon explained).
 - One idea per paragraph; headings that survive "headline-only" skimming.
@@ -61,16 +63,16 @@ Content calendar cadence (post-launch; v1 ships the inventory in §5):
 
 ## 5. Voice & tone guide (examples)
 
-| Scenario | Say (example) | Never say |
-|---|---|---|
-| Hero | "I help product teams ship design and code as one craft." | "We empower brands to unlock synergies." |
-| Case study failure | "The first onboarding flow failed retention tests — we cut it to two screens." | "Through iterative optimization we achieved paradigm shifts." |
-| FAQ | "Yes — I'll work inside your existing product cycle. Here's what I need from your team." | "Please contact our solutions team for granular insights." |
-| 404 | "This page is missing. Even the best sites have a draft that got away." | "Error 404: resource not found." |
-| Form error | "That email doesn't look right — mind checking it?" | "Invalid input format detected." |
-| Footer | "Designed & built by Sourov Mondol. No trackers, no cookies." | "© All rights reserved. Terms apply." |
+| Scenario           | Say (example)                                                                            | Never say                                                     |
+| ------------------ | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Hero               | "I help product teams ship design and code as one craft."                                | "We empower brands to unlock synergies."                      |
+| Case study failure | "The first onboarding flow failed retention tests — we cut it to two screens."           | "Through iterative optimization we achieved paradigm shifts." |
+| FAQ                | "Yes — I'll work inside your existing product cycle. Here's what I need from your team." | "Please contact our solutions team for granular insights."    |
+| 404                | "This page is missing. Even the best sites have a draft that got away."                  | "Error 404: resource not found."                              |
+| Form error         | "That email doesn't look right — mind checking it?"                                      | "Invalid input format detected."                              |
+| Footer             | "Designed & built by Sourov Mondol. No trackers, no cookies."                            | "© All rights reserved. Terms apply."                         |
 
-- **Word list:** use *I / my / me*; *craft, shipped, measurable, deliberate*; avoid *excited to, thrilled, amazing, cutting-edge, revolutionize, empower, seamless* (overused), *solutions*, superlatives.
+- **Word list:** use _I / my / me_; _craft, shipped, measurable, deliberate_; avoid _excited to, thrilled, amazing, cutting-edge, revolutionize, empower, seamless_ (overused), _solutions_, superlatives.
 - **Punctuation:** em-dashes fine; exclamation marks ≤ 1 per page; ellipses sparingly.
 - **Numbers:** real metrics or nothing; "%" with actual figures; rounding marked "~" when estimated.
 - **Links in copy:** write link text as the target ("my take on design tokens"), never "click here".

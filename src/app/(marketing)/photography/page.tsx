@@ -10,7 +10,9 @@ import { photos } from "@data/photos";
 export const metadata: Metadata = {
   title: "Photography",
   description: "A personal collection of photographs.",
-  openGraph: { images: [`/og/photography?title=${encodeURIComponent("Photography")}`] },
+  openGraph: {
+    images: [`/og/photography?title=${encodeURIComponent("Photography")}`],
+  },
   // Thin/empty section: don't index until there's something real to show.
   robots: photos.length === 0 ? { index: false, follow: true } : undefined,
 };
@@ -29,7 +31,10 @@ export default function PhotographyPage() {
             title="Nothing here yet."
             description="Real photographs will fill this in over time — not a stock gallery standing in for one."
           >
-            <Link href="/work" className="text-accent-strong text-sm font-medium hover:underline">
+            <Link
+              href="/work"
+              className="text-accent-strong text-sm font-medium hover:underline"
+            >
               See the work instead →
             </Link>
           </EmptyState>

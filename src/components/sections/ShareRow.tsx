@@ -26,7 +26,9 @@ export default function ShareRow({ title }: { title: string }) {
       </button>
       <a
         href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${
-          typeof window !== "undefined" ? encodeURIComponent(window.location.href) : ""
+          typeof window !== "undefined"
+            ? encodeURIComponent(window.location.href)
+            : ""
         }`}
         target="_blank"
         rel="noopener noreferrer"
