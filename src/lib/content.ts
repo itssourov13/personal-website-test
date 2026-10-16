@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import matter from "gray-matter";
 import { marked } from "marked";
+import { parse as parseYaml } from "yaml";
 
 import {
   ideaFrontmatterSchema,
@@ -18,14 +18,30 @@ import {
 } from "@/lib/schema";
 import { readingTime, slugify } from "@/lib/utils";
 
-// DEVIATION FROM tech-stack.md (D-005): the plan calls for Velite. Velite's
-// build-time codegen couldn't be installed/verified in the authoring
-// environment (no network access), so this is a small, dependency-light
-// hand-rolled loader (gray-matter + marked) with the same zod-validated
-// contract. Swapping back to Velite later is a drop-in change scoped to this
-// file — see project-planning/09-decisions/decision-log.md.
+// DEVIATION FROM tech-stack.md (D-005): the plan calls for Velite. Until that
+// migration, frontmatter is parsed with the maintained YAML parser and content
+// stays validated by the same Zod schemas.
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
+
+function parseFrontmatter(raw: string): {
+  data: Record<string, unknown>;
+  content: string;
+} {
+  const match = /^---\s*\r?\n([\s\S]*?)\r?\n(?:---|\.\.\.)\s*(?:\r?\n|$)/.exec(
+    raw,
+  );
+  if (!match) return { data: {}, content: raw };
+  const parsed: unknown = parseYaml(match[1] ?? "");
+  if (parsed == null) return { data: {}, content: raw.slice(match[0].length) };
+  if (typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error("Frontmatter must be a YAML mapping");
+  }
+  return {
+    data: parsed as Record<string, unknown>,
+    content: raw.slice(match[0].length),
+  };
+}
 
 function readCollection(
   collection: "work" | "writing" | "lab" | "ideas" | "life",
@@ -40,7 +56,7 @@ function readCollection(
     .map((file) => {
       const slug = file.replace(/\.mdx?$/, "");
       const raw = fs.readFileSync(path.join(dir, file), "utf8");
-      const { data, content } = matter(raw);
+      const { data, content } = parseFrontmatter(raw);
       return { slug, data, content };
     });
 }

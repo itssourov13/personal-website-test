@@ -154,7 +154,7 @@
 
 ### D-030 — Content layer: hand-rolled loader instead of Velite (deviation from D-005)
 
-**Context:** the authoring environment (an AI agent session with no network/package-registry access) could not install or verify Velite's build-time plugin wiring. **Decision:** `src/lib/content.ts` reads `content/{work,writing}/*.mdx` directly with `gray-matter` (frontmatter) + `marked` (markdown → HTML), validated against the same zod schemas (`src/lib/schema.ts`) the plan specified for Velite. **Consequences:** identical content contract and file layout, so swapping in real Velite later is scoped to `content.ts` alone; no MDX component embedding (JSX-in-content) until that swap — current content is plain Markdown. Revisit once a human/dev environment with network access can install and verify Velite.
+**Context:** the authoring environment (an AI agent session with no network/package-registry access) could not install or verify Velite's build-time plugin wiring. **Decision:** `src/lib/content.ts` reads `content/{work,writing}/*.mdx` directly with the maintained `yaml` parser (frontmatter) + `marked` (markdown → HTML), validated against the same zod schemas (`src/lib/schema.ts`) the plan specified for Velite. **Consequences:** identical content contract and file layout, so swapping in real Velite later is scoped to `content.ts` alone; no MDX component embedding (JSX-in-content) until that swap — current content is plain Markdown. Revisit once a human/dev environment with network access can install and verify Velite.
 
 ### D-031 — Contact endpoint rate limiting: in-memory fallback (deviation from D-010)
 

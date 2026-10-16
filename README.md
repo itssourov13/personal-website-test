@@ -11,16 +11,12 @@ next-themes.
 
 ## Status
 
-The full site is built and all quality gates pass locally (verified
-2026-09-18 on this machine):
-
-| Gate             | Result                       |
-| ---------------- | ---------------------------- |
-| `pnpm lint`      | pass                         |
-| `pnpm typecheck` | pass (strict, zero `any`)    |
-| `pnpm test`      | 19/19 unit tests pass        |
-| `pnpm build`     | pass (production build)      |
-| `pnpm e2e`       | 218 tests, chromium + webkit |
+GitHub Actions is the source of truth for the exact commit being reviewed.
+The quality job runs lint, typecheck, unit tests, content validation, the
+production dependency audit, and a production build. The E2E job runs the
+Playwright + axe suite in Chromium and WebKit and uploads reports/traces on
+failure. Run the same commands locally before opening a PR; do not rely on
+historical test counts from an earlier snapshot.
 
 Routes: `/`, `/work`, `/writing`, `/ideas`, `/lab`, `/life`,
 `/photography`, `/bookmarks`, `/topics`, `/about`, `/services`,
@@ -48,14 +44,14 @@ pnpm dev                  # http://localhost:3000
 
 ## Environment variables
 
-| Variable                          | Scope  | Purpose                                                   |
-| --------------------------------- | ------ | --------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`            | client | canonical URL for metadata, sitemap, OG                   |
-| `NEXT_PUBLIC_SITE_NAME`           | client | brand metadata                                            |
-| `NEXT_PUBLIC_ANALYTICS_DOMAIN`    | client | Plausible data-domain (omit if analytics unset)           |
-| `RESEND_API_KEY`                  | server | contact form email delivery (fails open without it)       |
-| `UPSTASH_REDIS_REST_URL`/`_TOKEN` | server | distributed rate limiting (optional, in-memory fallback)  |
-| `CONTACT_TO_EMAIL`                | server | contact form recipient (falls back to `siteConfig.email`) |
+| Variable                          | Scope  | Purpose                                                      |
+| --------------------------------- | ------ | ------------------------------------------------------------ |
+| `NEXT_PUBLIC_SITE_URL`            | client | canonical URL for metadata, sitemap, OG                      |
+| `NEXT_PUBLIC_SITE_NAME`           | client | brand metadata                                               |
+| `NEXT_PUBLIC_ANALYTICS_DOMAIN`    | client | Plausible data-domain (omit if analytics unset)              |
+| `RESEND_API_KEY`                  | server | contact email delivery; no key returns 503 + mailto fallback |
+| `UPSTASH_REDIS_REST_URL`/`_TOKEN` | server | distributed contact rate limit (recommended in production)   |
+| `CONTACT_TO_EMAIL`                | server | contact form recipient (falls back to `siteConfig.email`)    |
 
 `.env*.local` is gitignored — never commit real values. Secrets live only in
 Vercel project settings for deployed environments (see the deployment plan,
@@ -95,16 +91,17 @@ Before any PR: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`
 
 Deployment notes:
 
-- **Security headers** (CSP with a per-request nonce, HSTS, `nosniff`,
-  `DENY`, restrictive Permissions-Policy) are served by `next.config.ts` +
-  `src/middleware.ts`. **Do not duplicate the CSP in `vercel.json`** — it is
-  deliberately set in exactly one place (two policies would each have to
-  pass independently).
+- **Security headers** (nonce-based CSP, HSTS without the preload directive,
+  `nosniff`, `DENY`, restrictive Permissions-Policy) are served by
+  `src/middleware.ts` and `next.config.ts`. **Do not duplicate the CSP in
+  `vercel.json`** — it is deliberately set in exactly one place (two policies
+  would each have to pass independently).
 - The nonce-based CSP makes routes render dynamically (`ƒ`) instead of
   static — that is a documented, deliberate trade-off (see the middleware
-  header comment and DECISIONLOG). The site remains fully deployable; the
-  static-first architecture and its fallbacks are described in
-  `project-planning/08-operations/deployment-plan.md`.
+  header comment and DECISIONLOG). Configure `NEXT_PUBLIC_SITE_URL`,
+  `NEXT_PUBLIC_SITE_NAME`, and (when enabled) `NEXT_PUBLIC_ANALYTICS_DOMAIN`
+  in each deployed environment; metadata and the Plausible script now read
+  those settings.
 - Contact endpoint `POST /api/contact`: zod validation, honeypot field,
   fill-time trap, rate limiting (fail-open), Resend delivery, and a mailto
   fallback in the UI when sending is unavailable.

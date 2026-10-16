@@ -23,7 +23,7 @@ const sections = [
   },
   {
     title: "Typography",
-    body: "Fraunces for display type, Inter for text, both loaded through next/font so there's no layout shift waiting on a web font. Body copy sits in a measured content width rather than stretching edge to edge.",
+    body: "Fraunces for display type, Inter for text, both self-hosted through next/font/local so production builds do not depend on a Google Fonts network response. Body copy sits in a measured content width rather than stretching edge to edge.",
   },
   {
     title: "Motion",

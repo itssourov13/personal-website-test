@@ -38,17 +38,23 @@ export type SiteConfig = {
   excludes: string[];
 };
 
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+const normalizedSiteUrl = configuredSiteUrl
+  ? new URL(configuredSiteUrl).origin
+  : "https://sourovmondol.studio";
+const configuredSiteName = process.env.NEXT_PUBLIC_SITE_NAME?.trim();
+
 // Real identity (see decision-log.md D-038 — resolves A-001). `domain`/
 // `email` are still a placeholder in the original A-002 pattern (renamed to
 // match the new name, not owner-confirmed) — see notes-and-assumptions.md.
 // Every piece of metadata, JSON-LD, the sitemap, RSS, and the footer derive
 // from this file.
 export const siteConfig = {
-  name: "Sourov Mondol",
+  name: configuredSiteName || "Sourov Mondol",
   // Casual/first-person contexts (e.g. the About page greeting) use this
   // instead of the full name.
   shortName: "Sourov",
-  domain: "sourovmondol.studio",
+  domain: new URL(normalizedSiteUrl).hostname,
   tagline: "Independent product designer & engineer.",
   description:
     "Sourov Mondol is an independent product designer and engineer who helps founders and teams design, build, and ship premium digital products.",

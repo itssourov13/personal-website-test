@@ -7,10 +7,13 @@ import { contactSchema } from "@/lib/schema";
 const MIN_FILL_TIME_MS = 1500;
 
 export async function POST(request: NextRequest) {
+  const forwardedFor = request.headers.get("x-forwarded-for");
   const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    request.headers.get("x-real-ip")?.trim() ||
+    forwardedFor?.split(",").at(-1)?.trim() ||
+    "unknown";
 
-  if (!checkRateLimit(ip)) {
+  if (!(await checkRateLimit(ip))) {
     return NextResponse.json(
       { message: "Too many requests. Please try again later." },
       { status: 429 },
@@ -43,7 +46,16 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    await sendContactEmail({ name, email, budget, message });
+    const delivery = await sendContactEmail({ name, email, budget, message });
+    if (!delivery.delivered) {
+      return NextResponse.json(
+        {
+          message:
+            "Email delivery is not configured yet. Please use the email link below.",
+        },
+        { status: 503 },
+      );
+    }
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("[api/contact] send failed", error);

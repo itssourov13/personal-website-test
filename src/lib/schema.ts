@@ -77,7 +77,7 @@ export const lifeFrontmatterSchema = z.object({
 export type LifeFrontmatter = z.infer<typeof lifeFrontmatterSchema>;
 export type LifeEntry = LifeFrontmatter & { slug: string; body: string };
 
-export const contactSchema = z.object({
+export const contactFormSchema = z.object({
   name: z.string().min(2, "Please enter your name.").max(80),
   email: z.string().email("Please enter a valid email.").max(254),
   budget: z.string().max(80).optional(),
@@ -87,10 +87,16 @@ export const contactSchema = z.object({
     .max(4000),
   // Honeypot: must stay empty. Bots that fill every field trip this.
   company: z.string().max(0, "").optional().default(""),
-  // Time-trap: form must be on-page at least a couple seconds before submit.
+});
+
+// Server-side request schema additionally requires the anti-bot timestamp.
+// It must not be part of the browser form resolver because the client supplies
+// it only when submitting, after React Hook Form has already validated fields.
+export const contactSchema = contactFormSchema.extend({
   renderedAt: z.number(),
 });
 
+export type ContactFormInput = z.infer<typeof contactFormSchema>;
 export type ContactInput = z.infer<typeof contactSchema>;
 
 export const labFrontmatterSchema = z.object({

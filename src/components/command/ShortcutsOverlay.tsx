@@ -22,7 +22,9 @@ export default function ShortcutsOverlay() {
         target?.tagName === "TEXTAREA" ||
         target?.isContentEditable;
 
-      if (event.key === "?" && !isTyping) {
+      const isQuestionMark =
+        event.key === "?" || (event.code === "Slash" && event.shiftKey);
+      if (isQuestionMark && !isTyping) {
         event.preventDefault();
         setOpen((v) => !v);
       } else if (event.key === "Escape" && open) {
