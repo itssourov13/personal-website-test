@@ -1,6 +1,22 @@
 import { describe, expect, it } from "vitest";
 
-import { contactSchema, workFrontmatterSchema } from "@/lib/schema";
+import {
+  contactFormSchema,
+  contactSchema,
+  workFrontmatterSchema,
+} from "@/lib/schema";
+
+describe("contactFormSchema", () => {
+  it("accepts valid browser fields without the server-only timestamp", () => {
+    expect(
+      contactFormSchema.safeParse({
+        name: "Jamie Rivera",
+        email: "jamie@example.com",
+        message: "I'd like to talk about a project for our team, please.",
+      }).success,
+    ).toBe(true);
+  });
+});
 
 describe("contactSchema", () => {
   const base = {

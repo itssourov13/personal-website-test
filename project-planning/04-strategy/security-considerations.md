@@ -18,9 +18,9 @@ Explicitly **out of scope** for v1 risk register: auth systems, payments, PII da
 
 ## 2. Static surface hardening
 
-- **CSP** (set via `next.config.ts` headers; strictly nonce-free, static policy is fine since no inline scripts):
-  `default-src 'self'; script-src 'self' https://plausible.io; style-src 'self' 'unsafe-inline' (Tailwind/Next inline styles); img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://plausible.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self'`
-  - `unsafe-inline` for style accepted (Next requirement); **no** `unsafe-eval` in v1 policy.
+- **CSP** is generated per request in `src/middleware.ts`, with a fresh nonce for Next/React inline bootstrap scripts, the JSON-LD script, and Plausible. Do not add a second static CSP in `next.config.ts` or `vercel.json`: independently enforced duplicate policies can block scripts even when one policy contains the nonce.
+  - Production `script-src` must keep the request nonce and **must not** permit `unsafe-inline` or `unsafe-eval`; `style-src 'unsafe-inline'` remains a separate styling allowance. The current policy restricts sources with `default-src 'self'`, `img-src 'self' data: https:`, `font-src 'self'`, `connect-src 'self' https://plausible.io`, `frame-ancestors 'none'`, `base-uri 'self'`, and `form-action 'self'`.
+  - Trade-off: nonce-based CSP requires dynamic rendering on matched routes. Keep this as an explicit security/performance decision; revisit static generation only with a tested CSP strategy that preserves equivalent protection.
 - **Security headers bundle:** `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()` — enforced in header config, verified in CI (Playwright assert).
 - **HSTS:** `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload` (enable once HTTPS confirmed; submit preload only at launch).
 - MDX: raw HTML disabled by default; external images only via configured `remotePatterns` allowlist (no arbitrary URL fetch → no SSRF vector); links sanitized `rel` on external.
@@ -32,7 +32,7 @@ Explicitly **out of scope** for v1 risk register: auth systems, payments, PII da
 1. **Transport:** POST JSON only; TLS enforced by platform.
 2. **Validation:** zod schema (identical client/server); length caps (name ≤ 80, email ≤ 254, message ≤ 4000 chars); email format.
 3. **Bot deterrence:** Honeypot field (CSS-hidden, `tabindex=-1`, `aria-hidden`) — filled → 200-OK decoy (no error, just discard); time-trap: form rendered > ~2.5 s ago (server sets issued-at signed constant, client passes elapsed) — too fast → discard.
-4. **Rate limiting:** Upstash REST (or Vercel KV): per-IP sliding window (e.g., 5 req / 10 min) + global burst cap; fail-open with logged error (documented, low traffic) or fail-closed per owner choice at P4 (default fail-open + alert).
+4. **Rate limiting:** when Upstash REST credentials are configured, use a shared Redis counter with a 5-request/10-minute per-client limit. If credentials are absent or Redis is unavailable, log the failure and use the best-effort in-memory fallback (not distributed and not a substitute for production Redis). A global burst cap is not implemented and must not be assumed.
 5. **Delivery:** Resend via server-only `RESEND_API_KEY`; `to` from `CONTACT_TO_EMAIL` (env) falling back to `siteConfig.email`; subject prefixed `[site]`; include reply-to; never log message bodies (PII); logs: counters only.
 6. **Failure UX:** 503 response → client shows mailto fallback (no stack traces, no IDs leak — generic message only).
 7. **No secrets in client:** API keys/env only in route handler + `lib/contact.ts` marked `import "server-only"`.

@@ -1,5 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+
+import { expect, test } from "./fixtures";
 
 // accessibility-plan.md §9: every route, axe 0 violations, light + dark.
 const routes = [

@@ -102,15 +102,21 @@ export default async function RootLayout({
     >
       <body className="font-sans">
         <script {...jsonLdScript(personJsonLd())} nonce={nonce} />
-        {process.env.NODE_ENV === "production" ? (
+        {process.env.NODE_ENV === "production" &&
+        process.env.NEXT_PUBLIC_ANALYTICS_DOMAIN?.trim() ? (
           <Script
             src="https://plausible.io/js/script.js"
-            data-domain={siteConfig.domain}
+            data-domain={process.env.NEXT_PUBLIC_ANALYTICS_DOMAIN.trim()}
             strategy="afterInteractive"
             nonce={nonce}
           />
         ) : null}
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          nonce={nonce}
+        >
           <LenisProvider />
           <RouteFocus />
           <SkipLink />

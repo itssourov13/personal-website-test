@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 test("home page loads and nav works", async ({ page }) => {
   await page.goto("/");
@@ -31,12 +31,117 @@ test("contact form shows validation errors on empty submit", async ({
   await expect(page.getByRole("alert").first()).toBeVisible();
 });
 
+test("contact form submits valid fields and shows the success state", async ({
+  page,
+}) => {
+  let submittedPayload: Record<string, unknown> | undefined;
+  await page.route("**/api/contact", async (route) => {
+    submittedPayload = route.request().postDataJSON() as Record<
+      string,
+      unknown
+    >;
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true }),
+    });
+  });
+
+  await page.goto("/contact");
+  await page.locator("#name").fill("Jamie Rivera");
+  await page.locator("#email").fill("jamie@example.com");
+  await page
+    .locator("#message")
+    .fill("I would like to discuss a website project for my team.");
+  await page.getByRole("button", { name: /send message/i }).click();
+
+  await expect(page.getByRole("status")).toContainText("Thanks — that's sent");
+  expect(submittedPayload?.renderedAt).toEqual(expect.any(Number));
+  expect(submittedPayload?.name).toBe("Jamie Rivera");
+});
+
+test("contact form explains delivery errors and provides a mailto fallback", async ({
+  page,
+}) => {
+  await page.route("**/api/contact", async (route) => {
+    await route.fulfill({
+      status: 503,
+      contentType: "application/json",
+      body: JSON.stringify({
+        message: "Couldn't send that right now. Please try again shortly.",
+      }),
+    });
+  });
+
+  await page.goto("/contact");
+  await page.locator("#name").fill("Jamie Rivera");
+  await page.locator("#email").fill("jamie@example.com");
+  await page
+    .locator("#message")
+    .fill("I would like to discuss a website project for my team.");
+  await page.getByRole("button", { name: /send message/i }).click();
+
+  await expect(page.locator("form [role=alert]")).toContainText(
+    "Couldn't send that right now",
+  );
+  await expect(page.locator('form a[href^="mailto:"]')).toBeVisible();
+});
+
+test("contact API returns 503 instead of false success when email delivery is not configured", async ({
+  request,
+}) => {
+  test.skip(
+    Boolean(process.env.RESEND_API_KEY),
+    "Avoid sending a real email when delivery credentials exist.",
+  );
+  const response = await request.post("/api/contact", {
+    data: {
+      name: "Jamie Rivera",
+      email: "jamie@example.com",
+      message: "I would like to discuss a website project for my team.",
+      company: "",
+      renderedAt: Date.now() - 5000,
+    },
+  });
+  expect(response.status()).toBe(503);
+});
+
 test("security headers are present on the response", async ({ page }) => {
   const response = await page.goto("/");
   const headers = response?.headers() ?? {};
-  expect(headers["content-security-policy"]).toContain("default-src 'self'");
+  const csp = headers["content-security-policy"] ?? "";
+  const scriptDirective =
+    csp
+      .split(";")
+      .find((directive) => directive.trim().startsWith("script-src")) ?? "";
+  expect(csp).toContain("default-src 'self'");
+  expect(scriptDirective).toContain("'nonce-");
+  expect(scriptDirective).not.toContain("'unsafe-inline'");
+  expect(scriptDirective).not.toContain("'unsafe-eval'");
   expect(headers["x-frame-options"]).toBe("DENY");
   expect(headers["x-content-type-options"]).toBe("nosniff");
+  expect(headers["strict-transport-security"]).toContain("max-age=63072000");
+  expect(headers["strict-transport-security"]).not.toContain("preload");
+});
+
+test("nonce CSP does not block the inline theme bootstrap", async ({
+  page,
+}) => {
+  const cspErrors: string[] = [];
+  page.on("console", (message) => {
+    if (
+      message.type() === "error" &&
+      /content security policy|violates the following CSP|violates the following Content Security Policy/i.test(
+        message.text(),
+      )
+    ) {
+      cspErrors.push(message.text());
+    }
+  });
+
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveClass(/light|dark/);
+  expect(cspErrors).toEqual([]);
 });
 
 test("no horizontal scroll at narrow viewport", async ({ page }) => {
@@ -112,6 +217,9 @@ test("command palette opens with Ctrl+K and navigates on Enter", async ({
 test("back-to-top button appears after scrolling and returns to top", async ({
   page,
 }) => {
+  // Keep this interaction assertion deterministic; Lenis/native smooth scrolling
+  // is verified elsewhere and can take longer than Playwright's short expect timeout.
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await page.mouse.wheel(0, 2000);
   const button = page.getByRole("button", { name: "Back to top" });
@@ -156,7 +264,7 @@ test("writing series shows part navigation", async ({ page }) => {
 
 test("? opens the keyboard shortcuts overlay", async ({ page }) => {
   await page.goto("/");
-  await page.keyboard.press("?");
+  await page.keyboard.press("Shift+/");
   await expect(
     page.getByRole("dialog", { name: "Keyboard shortcuts" }),
   ).toBeVisible();

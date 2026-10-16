@@ -4,11 +4,23 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import matter from "gray-matter";
+import { parse as parseYaml } from "yaml";
 
 const collections = ["work", "writing", "ideas"];
 const failOnWarning = process.argv.includes("--fail-on-warning");
 let warnings = 0;
+
+function parseFrontmatter(raw) {
+  const match = /^---\s*\r?\n([\s\S]*?)\r?\n(?:---|\.\.\.)\s*(?:\r?\n|$)/.exec(
+    raw,
+  );
+  if (!match) return { data: {}, content: raw };
+  const data = parseYaml(match[1]) ?? {};
+  if (typeof data !== "object" || Array.isArray(data)) {
+    throw new Error("Frontmatter must be a YAML mapping");
+  }
+  return { data, content: raw.slice(match[0].length) };
+}
 
 for (const collection of collections) {
   const dir = path.join(process.cwd(), "content", collection);
@@ -17,7 +29,9 @@ for (const collection of collections) {
   for (const file of fs.readdirSync(dir)) {
     if (!file.endsWith(".mdx") || file.startsWith("_")) continue;
 
-    const { data } = matter(fs.readFileSync(path.join(dir, file), "utf8"));
+    const { data } = parseFrontmatter(
+      fs.readFileSync(path.join(dir, file), "utf8"),
+    );
     const missing = [];
 
     if (!data.summary) missing.push("summary");

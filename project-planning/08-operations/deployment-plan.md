@@ -49,7 +49,7 @@ Implemented in `next.config.ts` headers block (values in `security-consideration
 curl -sI https://<domain>/ | grep -iE 'content-security-policy|strict-transport|x-content-type-options|x-frame-options|referrer-policy|permissions-policy'
 ```
 
-Expected: CSP (nonce-free, `frame-ancestors 'none'`, no `unsafe-eval`), `nosniff`, `DENY`, `strict-origin-when-cross-origin`, restrictive Permissions-Policy, HSTS present. Playwright e2e asserts these on all 9 routes (P5-6).
+Expected: nonce-based CSP (`frame-ancestors 'none'`, production `script-src` has a nonce and no `unsafe-inline`/`unsafe-eval`), `nosniff`, `DENY`, `strict-origin-when-cross-origin`, restrictive Permissions-Policy, and HSTS without `preload` until the owner deliberately opts in. Playwright e2e asserts these on all 9 routes (P5-6).
 
 ## 6. Rollback & recovery
 
